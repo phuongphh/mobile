@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'package:Adte/models/app_theme.dart';
 import 'screens/app_home_screen.dart';
+import 'package:Adte/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         textTheme: AppTheme.textTheme,
         platform: TargetPlatform.iOS,
       ),
-      home: AppHomeScreen(),
+      home: NavigationHomeScreen(),
     );
   }
 }

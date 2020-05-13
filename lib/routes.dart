@@ -1,3 +1,4 @@
+import 'package:Adte/screens/home_screen_bk.dart';
 import 'package:flutter/material.dart';
 import 'package:Adte/models/app_theme.dart';
 import 'package:Adte/custom_drawer/drawer_user_controller.dart';
@@ -13,6 +14,7 @@ class NavigationHomeScreen extends StatefulWidget {
 }
 
 class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
+  Text screenTitle;
   Widget screenView;
   DrawerIndex drawerIndex;
 

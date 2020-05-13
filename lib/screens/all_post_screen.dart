@@ -226,8 +226,7 @@ class _AllPostScreenState extends State<AllPostScreen>
                     ),
                     boxShadow: <BoxShadow>[
                       BoxShadow(
-                          color: AppTheme.grey
-                              .withOpacity(0.4 * topBarOpacity),
+                          color: AppTheme.grey.withOpacity(0.4 * topBarOpacity),
                           offset: const Offset(1.1, 1.1),
                           blurRadius: 10.0),
                     ],
@@ -235,7 +234,7 @@ class _AllPostScreenState extends State<AllPostScreen>
                   child: Column(
                     children: <Widget>[
                       SizedBox(
-                        height: MediaQuery.of(context).padding.top,
+                        height: MediaQuery.of(context).padding.top - 8,
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -246,12 +245,21 @@ class _AllPostScreenState extends State<AllPostScreen>
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8, left: 8),
+                              child: Container(
+                                width: AppBar().preferredSize.height - 28,
+                                height: AppBar().preferredSize.height - 22,
+                              ),
+                            ),
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
                                   'All posts',
                                   textAlign: TextAlign.left,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     fontFamily: AppTheme.fontName,
                                     fontWeight: FontWeight.w700,
@@ -269,6 +277,15 @@ class _AllPostScreenState extends State<AllPostScreen>
                               ),
                               child: Row(
                                 children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 8),
+                                    child: new IconButton(
+                                      icon: Icon(Icons.search,
+                                      color: AppTheme.grey,
+                                      size: 18),
+                                      onPressed: (){},
+                                    ),
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.only(right: 8),
                                     child: Icon(
