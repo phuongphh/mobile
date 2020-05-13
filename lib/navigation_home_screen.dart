@@ -1,11 +1,11 @@
-import 'package:Adte/app_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:Adte/models/app_theme.dart';
 import 'package:Adte/custom_drawer/drawer_user_controller.dart';
 import 'package:Adte/custom_drawer/home_drawer.dart';
-import 'package:Adte/feedback_screen.dart';
-import 'package:Adte/fitness_app/app_home_screen.dart';
-import 'package:Adte/help_screen.dart';
-import 'package:Adte/invite_friend_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:Adte/screens/feedback_screen.dart';
+import 'package:Adte/screens/app_home_screen.dart';
+import 'package:Adte/screens/help_screen.dart';
+import 'package:Adte/screens/invite_friend_screen.dart';
 
 class NavigationHomeScreen extends StatefulWidget {
   @override

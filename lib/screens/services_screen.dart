@@ -1,20 +1,20 @@
-import 'package:Adte/fitness_app/ui_view/category_list_view.dart';
-import 'package:Adte/fitness_app/ui_view/running_view.dart';
-import 'package:Adte/fitness_app/ui_view/title_view.dart';
-import 'package:Adte/fitness_app/ui_view/workout_view.dart';
+import 'package:Adte/widgets/category_list_view.dart';
+import 'package:Adte/widgets/running_view.dart';
+import 'package:Adte/widgets/title_view.dart';
+import 'package:Adte/widgets/workout_view.dart';
 import 'package:flutter/material.dart';
 
-import '../fintness_app_theme.dart';
+import 'package:Adte/models/app_theme.dart';
 
-class HandmadesScreen extends StatefulWidget {
-  const HandmadesScreen({Key key, this.animationController}) : super(key: key);
+class ServicesScreen extends StatefulWidget {
+  const ServicesScreen({Key key, this.animationController}) : super(key: key);
 
   final AnimationController animationController;
   @override
-  _HandmadesScreenState createState() => _HandmadesScreenState();
+  _ServicesScreenState createState() => _ServicesScreenState();
 }
 
-class _HandmadesScreenState extends State<HandmadesScreen>
+class _ServicesScreenState extends State<ServicesScreen>
     with TickerProviderStateMixin {
   Animation<double> topBarAnimation;
 
@@ -121,7 +121,7 @@ class _HandmadesScreenState extends State<HandmadesScreen>
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: FintnessAppTheme.background,
+      color: AppTheme.background,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Stack(
@@ -177,13 +177,13 @@ class _HandmadesScreenState extends State<HandmadesScreen>
                     0.0, 30 * (1.0 - topBarAnimation.value), 0.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: FintnessAppTheme.white.withOpacity(topBarOpacity),
+                    color: AppTheme.white.withOpacity(topBarOpacity),
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(32.0),
                     ),
                     boxShadow: <BoxShadow>[
                       BoxShadow(
-                          color: FintnessAppTheme.grey
+                          color: AppTheme.grey
                               .withOpacity(0.4 * topBarOpacity),
                           offset: const Offset(1.1, 1.1),
                           blurRadius: 10.0),
@@ -207,14 +207,14 @@ class _HandmadesScreenState extends State<HandmadesScreen>
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Handmades',
+                                  'Services',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
-                                    fontFamily: FintnessAppTheme.fontName,
+                                    fontFamily: AppTheme.fontName,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 22 + 6 - 6 * topBarOpacity,
                                     letterSpacing: 1.2,
-                                    color: FintnessAppTheme.darkerText,
+                                    color: AppTheme.darkerText,
                                   ),
                                 ),
                               ),
@@ -230,7 +230,7 @@ class _HandmadesScreenState extends State<HandmadesScreen>
                                     padding: const EdgeInsets.only(right: 8),
                                     child: Icon(
                                       Icons.location_on,
-                                      color: FintnessAppTheme.grey,
+                                      color: AppTheme.grey,
                                       size: 18,
                                     ),
                                   ),
@@ -238,11 +238,11 @@ class _HandmadesScreenState extends State<HandmadesScreen>
                                     'Vietnam',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      fontFamily: FintnessAppTheme.fontName,
+                                      fontFamily: AppTheme.fontName,
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
                                       letterSpacing: -0.2,
-                                      color: FintnessAppTheme.darkerText,
+                                      color: AppTheme.darkerText,
                                     ),
                                   ),
                                 ],

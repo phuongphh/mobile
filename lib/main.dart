@@ -1,8 +1,9 @@
 import 'dart:io';
-import 'package:Adte/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'fitness_app/app_home_screen.dart';
+
+import 'package:Adte/models/app_theme.dart';
+import 'screens/app_home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,12 +1,12 @@
-import 'package:Adte/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:Adte/models/app_theme.dart';
 
-class InviteFriend extends StatefulWidget {
+class HelpScreen extends StatefulWidget {
   @override
-  _InviteFriendState createState() => _InviteFriendState();
+  _HelpScreenState createState() => _HelpScreenState();
 }
 
-class _InviteFriendState extends State<InviteFriend> {
+class _HelpScreenState extends State<HelpScreen> {
   @override
   void initState() {
     super.initState();
@@ -27,12 +27,12 @@ class _InviteFriendState extends State<InviteFriend> {
                     top: MediaQuery.of(context).padding.top,
                     left: 16,
                     right: 16),
-                child: Image.asset('assets/images/inviteImage.png'),
+                child: Image.asset('assets/images/helpImage.png'),
               ),
               Container(
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
-                  'Invite Your Friends',
+                  'How can we help you?',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -42,7 +42,7 @@ class _InviteFriendState extends State<InviteFriend> {
               Container(
                 padding: const EdgeInsets.only(top: 16),
                 child: const Text(
-                  'Are you one of those who makes everything\n at the last moment?',
+                  'It looks like you are experiencing problems\nwith our sign up process. We are here to\nhelp so please get in touch with us',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
@@ -54,7 +54,7 @@ class _InviteFriendState extends State<InviteFriend> {
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
                     child: Container(
-                      width: 120,
+                      width: 140,
                       height: 40,
                       decoration: BoxDecoration(
                         color: Colors.blue,
@@ -72,26 +72,15 @@ class _InviteFriendState extends State<InviteFriend> {
                         child: InkWell(
                           onTap: () {},
                           child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(
-                                  Icons.share,
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Text(
+                                'Chat with Us',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
                                   color: Colors.white,
-                                  size: 22,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Text(
-                                    'Share',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
                         ),

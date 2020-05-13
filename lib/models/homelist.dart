@@ -1,5 +1,5 @@
 import 'package:Adte/design_course/home_design_course.dart';
-import 'package:Adte/fitness_app/app_home_screen.dart';
+import 'package:Adte/screens/app_home_screen.dart';
 import 'package:Adte/hotel_booking/hotel_home_screen.dart';
 import 'package:flutter/widgets.dart';
 

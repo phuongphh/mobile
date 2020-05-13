@@ -1,4 +1,4 @@
-import 'package:Adte/fitness_app/fintness_app_theme.dart';
+import 'package:Adte/models/app_theme.dart';
 import 'package:Adte/main.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -26,7 +26,7 @@ class ServicesView extends StatelessWidget {
                   left: 24, right: 24, top: 16, bottom: 18),
               child: Container(
                 decoration: BoxDecoration(
-                  color: FintnessAppTheme.white,
+                  color: AppTheme.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(8.0),
                       bottomLeft: Radius.circular(8.0),
@@ -34,7 +34,7 @@ class ServicesView extends StatelessWidget {
                       topRight: Radius.circular(68.0)),
                   boxShadow: <BoxShadow>[
                     BoxShadow(
-                        color: FintnessAppTheme.grey.withOpacity(0.2),
+                        color: AppTheme.grey.withOpacity(0.2),
                         offset: Offset(1.1, 1.1),
                         blurRadius: 10.0),
                   ],
@@ -80,11 +80,11 @@ class ServicesView extends StatelessWidget {
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontFamily:
-                                                      FintnessAppTheme.fontName,
+                                                      AppTheme.fontName,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 16,
                                                   letterSpacing: -0.1,
-                                                  color: FintnessAppTheme.grey
+                                                  color: AppTheme.grey
                                                       .withOpacity(0.5),
                                                 ),
                                               ),
@@ -110,12 +110,12 @@ class ServicesView extends StatelessWidget {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          FintnessAppTheme
+                                                          AppTheme
                                                               .fontName,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 16,
-                                                      color: FintnessAppTheme
+                                                      color: AppTheme
                                                           .darkerText,
                                                     ),
                                                   ),
@@ -129,13 +129,13 @@ class ServicesView extends StatelessWidget {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          FintnessAppTheme
+                                                          AppTheme
                                                               .fontName,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 12,
                                                       letterSpacing: -0.2,
-                                                      color: FintnessAppTheme
+                                                      color: AppTheme
                                                           .grey
                                                           .withOpacity(0.5),
                                                     ),
@@ -179,11 +179,11 @@ class ServicesView extends StatelessWidget {
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontFamily:
-                                                      FintnessAppTheme.fontName,
+                                                      AppTheme.fontName,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 16,
                                                   letterSpacing: -0.1,
-                                                  color: FintnessAppTheme.grey
+                                                  color: AppTheme.grey
                                                       .withOpacity(0.5),
                                                 ),
                                               ),
@@ -209,12 +209,12 @@ class ServicesView extends StatelessWidget {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          FintnessAppTheme
+                                                          AppTheme
                                                               .fontName,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 16,
-                                                      color: FintnessAppTheme
+                                                      color: AppTheme
                                                           .darkerText,
                                                     ),
                                                   ),
@@ -228,13 +228,13 @@ class ServicesView extends StatelessWidget {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          FintnessAppTheme
+                                                          AppTheme
                                                               .fontName,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 12,
                                                       letterSpacing: -0.2,
-                                                      color: FintnessAppTheme
+                                                      color: AppTheme
                                                           .grey
                                                           .withOpacity(0.5),
                                                     ),
@@ -263,13 +263,13 @@ class ServicesView extends StatelessWidget {
                                       width: 100,
                                       height: 100,
                                       decoration: BoxDecoration(
-                                        color: FintnessAppTheme.white,
+                                        color: AppTheme.white,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(100.0),
                                         ),
                                         border: new Border.all(
                                             width: 4,
-                                            color: FintnessAppTheme
+                                            color: AppTheme
                                                 .nearlyDarkBlue
                                                 .withOpacity(0.2)),
                                       ),
@@ -284,11 +284,11 @@ class ServicesView extends StatelessWidget {
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily:
-                                                  FintnessAppTheme.fontName,
+                                                  AppTheme.fontName,
                                               fontWeight: FontWeight.normal,
                                               fontSize: 24,
                                               letterSpacing: 0.0,
-                                              color: FintnessAppTheme
+                                              color: AppTheme
                                                   .nearlyDarkBlue,
                                             ),
                                           ),
@@ -297,11 +297,11 @@ class ServicesView extends StatelessWidget {
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily:
-                                                  FintnessAppTheme.fontName,
+                                                  AppTheme.fontName,
                                               fontWeight: FontWeight.bold,
                                               fontSize: 12,
                                               letterSpacing: 0.0,
-                                              color: FintnessAppTheme.grey
+                                              color: AppTheme.grey
                                                   .withOpacity(0.5),
                                             ),
                                           ),
@@ -314,7 +314,7 @@ class ServicesView extends StatelessWidget {
                                     child: CustomPaint(
                                       painter: CurvePainter(
                                           colors: [
-                                            FintnessAppTheme.nearlyDarkBlue,
+                                            AppTheme.nearlyDarkBlue,
                                             HexColor("#8A98E8"),
                                             HexColor("#8A98E8")
                                           ],
@@ -340,7 +340,7 @@ class ServicesView extends StatelessWidget {
                       child: Container(
                         height: 2,
                         decoration: BoxDecoration(
-                          color: FintnessAppTheme.background,
+                          color: AppTheme.background,
                           borderRadius: BorderRadius.all(Radius.circular(4.0)),
                         ),
                       ),
@@ -359,11 +359,11 @@ class ServicesView extends StatelessWidget {
                                   'Carbs',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontFamily: FintnessAppTheme.fontName,
+                                    fontFamily: AppTheme.fontName,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 16,
                                     letterSpacing: -0.2,
-                                    color: FintnessAppTheme.darkText,
+                                    color: AppTheme.darkText,
                                   ),
                                 ),
                                 Padding(
@@ -402,10 +402,10 @@ class ServicesView extends StatelessWidget {
                                     '12g left',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      fontFamily: FintnessAppTheme.fontName,
+                                      fontFamily: AppTheme.fontName,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12,
-                                      color: FintnessAppTheme.grey
+                                      color: AppTheme.grey
                                           .withOpacity(0.5),
                                     ),
                                   ),
@@ -426,11 +426,11 @@ class ServicesView extends StatelessWidget {
                                       'Protein',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontFamily: FintnessAppTheme.fontName,
+                                        fontFamily: AppTheme.fontName,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 16,
                                         letterSpacing: -0.2,
-                                        color: FintnessAppTheme.darkText,
+                                        color: AppTheme.darkText,
                                       ),
                                     ),
                                     Padding(
@@ -471,10 +471,10 @@ class ServicesView extends StatelessWidget {
                                         '30g left',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontFamily: FintnessAppTheme.fontName,
+                                          fontFamily: AppTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
-                                          color: FintnessAppTheme.grey
+                                          color: AppTheme.grey
                                               .withOpacity(0.5),
                                         ),
                                       ),
@@ -496,11 +496,11 @@ class ServicesView extends StatelessWidget {
                                     Text(
                                       'Fat',
                                       style: TextStyle(
-                                        fontFamily: FintnessAppTheme.fontName,
+                                        fontFamily: AppTheme.fontName,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 16,
                                         letterSpacing: -0.2,
-                                        color: FintnessAppTheme.darkText,
+                                        color: AppTheme.darkText,
                                       ),
                                     ),
                                     Padding(
@@ -542,10 +542,10 @@ class ServicesView extends StatelessWidget {
                                         '10g left',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontFamily: FintnessAppTheme.fontName,
+                                          fontFamily: AppTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
-                                          color: FintnessAppTheme.grey
+                                          color: AppTheme.grey
                                               .withOpacity(0.5),
                                         ),
                                       ),

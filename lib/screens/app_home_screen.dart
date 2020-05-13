@@ -1,11 +1,12 @@
-import 'package:Adte/fitness_app/models/tabIcon_data.dart';
-import 'package:Adte/fitness_app/screens/handmades_screen.dart';
-import 'package:Adte/fitness_app/screens/services_screen.dart';
 import 'package:flutter/material.dart';
-import 'bottom_navigation_view/bottom_bar_view.dart';
-import 'fintness_app_theme.dart';
-import 'my_diary/my_diary_screen.dart';
-import '../navigation_home_screen.dart';
+
+import 'package:Adte/models/tabIcon_data.dart';
+import 'package:Adte/screens/handmades_screen.dart';
+import 'package:Adte/screens/services_screen.dart';
+import 'package:Adte/widgets/bottom_bar_view.dart';
+import 'package:Adte/models/app_theme.dart';
+import 'all_post_screen.dart';
+import 'package:Adte/navigation_home_screen.dart';
 
 class AppHomeScreen extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
 
   Widget tabBody = Container(
-    color: FintnessAppTheme.background,
+    color: AppTheme.background,
   );
 
   @override
@@ -31,7 +32,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
 
     animationController = AnimationController(
         duration: const Duration(milliseconds: 600), vsync: this);
-    tabBody = MyDiaryScreen(animationController: animationController);
+    tabBody = AllPostScreen(animationController: animationController);
     super.initState();
   }
 
@@ -44,7 +45,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: FintnessAppTheme.background,
+      color: AppTheme.background,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: FutureBuilder<bool>(
@@ -89,7 +90,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
                       return;
                     }
                     setState(() {
-                      tabBody = MyDiaryScreen(
+                      tabBody = AllPostScreen(
                           animationController: animationController);
                     });
                   });
