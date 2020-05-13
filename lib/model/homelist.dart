@@ -1,5 +1,5 @@
 import 'package:Adte/design_course/home_design_course.dart';
-import 'package:Adte/fitness_app/fitness_app_home_screen.dart';
+import 'package:Adte/fitness_app/app_home_screen.dart';
 import 'package:Adte/hotel_booking/hotel_home_screen.dart';
 import 'package:flutter/widgets.dart';
 
@@ -19,7 +19,7 @@ class HomeList {
     ),
     HomeList(
       imagePath: 'assets/fitness_app/fitness_app.png',
-      navigateScreen: FitnessAppHomeScreen(),
+      navigateScreen: AppHomeScreen(),
     ),
     HomeList(
       imagePath: 'assets/design_course/design_course.png',

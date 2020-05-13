@@ -7,12 +7,12 @@ import 'fintness_app_theme.dart';
 import 'my_diary/my_diary_screen.dart';
 import '../navigation_home_screen.dart';
 
-class FitnessAppHomeScreen extends StatefulWidget {
+class AppHomeScreen extends StatefulWidget {
   @override
-  _FitnessAppHomeScreenState createState() => _FitnessAppHomeScreenState();
+  _AppHomeScreenState createState() => _AppHomeScreenState();
 }
 
-class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
+class _AppHomeScreenState extends State<AppHomeScreen>
     with TickerProviderStateMixin {
   AnimationController animationController;
 

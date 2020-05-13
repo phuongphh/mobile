@@ -2,11 +2,10 @@ import 'package:Adte/app_theme.dart';
 import 'package:Adte/custom_drawer/drawer_user_controller.dart';
 import 'package:Adte/custom_drawer/home_drawer.dart';
 import 'package:Adte/feedback_screen.dart';
+import 'package:Adte/fitness_app/app_home_screen.dart';
 import 'package:Adte/help_screen.dart';
-import 'package:Adte/home_screen.dart';
 import 'package:Adte/invite_friend_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:Adte/fitness_app/fitness_app_home_screen.dart';
 
 class NavigationHomeScreen extends StatefulWidget {
   @override
@@ -20,7 +19,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   @override
   void initState() {
     drawerIndex = DrawerIndex.HOME;
-    screenView = FitnessAppHomeScreen();
+    screenView = AppHomeScreen();
     super.initState();
   }
 
@@ -53,7 +52,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
       drawerIndex = drawerIndexdata;
       if (drawerIndex == DrawerIndex.HOME) {
         setState(() {
-          screenView = const MyHomePage();
+          screenView = AppHomeScreen();
         });
       } else if (drawerIndex == DrawerIndex.Help) {
         setState(() {
