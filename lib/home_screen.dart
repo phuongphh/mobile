@@ -1,4 +1,4 @@
-import 'package:best_flutter_ui_templates/app_theme.dart';
+import 'package:Adte/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'model/homelist.dart';
 
@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               child: Padding(
                 padding: const EdgeInsets.only(top: 4),
                 child: Text(
-                  'Flutter UI',
+                  ' UI',
                   style: TextStyle(
                     fontSize: 22,
                     color: AppTheme.darkText,
