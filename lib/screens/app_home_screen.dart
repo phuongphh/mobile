@@ -9,6 +9,8 @@ import 'all_post_screen.dart';
 import 'package:Adte/routes.dart';
 
 class AppHomeScreen extends StatefulWidget {
+  const AppHomeScreen ({Key key}) : super (key: key);
+  
   @override
   _AppHomeScreenState createState() => _AppHomeScreenState();
 }
