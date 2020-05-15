@@ -25,9 +25,9 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="best_flutter_ui_templates" >
+        android:label="Adte" >
         <activity
-            android:name="com.example.best_flutter_ui_templates.MainActivity"
+            android:name="com.example.adte.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"

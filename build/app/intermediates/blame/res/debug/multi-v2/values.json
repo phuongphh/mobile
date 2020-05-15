@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/phuong/Workspace/prod/Best-Flutter-UI-Templates/best_flutter_ui_templates/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/Users/phuong/Workspace/prod/mobile/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
-                    "source": "/Users/phuong/Workspace/prod/Best-Flutter-UI-Templates/best_flutter_ui_templates/android/app/src/main/res/values/styles.xml",
+                    "source": "/Users/phuong/Workspace/prod/mobile/android/app/src/main/res/values/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
