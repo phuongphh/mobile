@@ -281,9 +281,8 @@ class _AllPostScreenState extends State<AllPostScreen>
                                     padding: const EdgeInsets.only(right: 8),
                                     child: new IconButton(
                                       icon: Icon(Icons.search,
-                                      color: AppTheme.grey,
-                                      size: 18),
-                                      onPressed: (){},
+                                          color: AppTheme.grey, size: 18),
+                                      onPressed: () {},
                                     ),
                                   ),
                                   Padding(

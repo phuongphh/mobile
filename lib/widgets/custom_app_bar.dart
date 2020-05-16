@@ -2,10 +2,11 @@ import 'package:Adte/models/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatefulWidget {
-  const CustomAppBar({Key key, this.animationController, this.topBarAnimation}) : super(key: key);
+  const CustomAppBar({Key key, this.animationController, this.scrollController})
+      : super(key: key);
 
   final AnimationController animationController;
-  final Animation<double> topBarAnimation;
+  final ScrollController scrollController;
   @override
   _CustomAppBarState createState() => _CustomAppBarState();
 }
@@ -14,7 +15,6 @@ class _CustomAppBarState extends State<CustomAppBar>
     with TickerProviderStateMixin {
   Animation<double> topBarAnimation;
 
-  final ScrollController scrollController = ScrollController();
   double topBarOpacity = 0.0;
 
   @override
@@ -23,22 +23,22 @@ class _CustomAppBarState extends State<CustomAppBar>
         CurvedAnimation(
             parent: widget.animationController,
             curve: Interval(0, 0.5, curve: Curves.fastOutSlowIn)));
-
-    scrollController.addListener(() {
-      if (scrollController.offset >= 24) {
+    
+    widget.scrollController.addListener(() {
+      if (widget.scrollController.offset >= 24) {
         if (topBarOpacity != 1.0) {
           setState(() {
             topBarOpacity = 1.0;
           });
         }
-      } else if (scrollController.offset <= 24 &&
-          scrollController.offset >= 0) {
-        if (topBarOpacity != scrollController.offset / 24) {
+      } else if (widget.scrollController.offset <= 24 &&
+          widget.scrollController.offset >= 0) {
+        if (topBarOpacity != widget.scrollController.offset / 24) {
           setState(() {
-            topBarOpacity = scrollController.offset / 24;
+            topBarOpacity = widget.scrollController.offset / 24;
           });
         }
-      } else if (scrollController.offset <= 0) {
+      } else if (widget.scrollController.offset <= 0) {
         if (topBarOpacity != 0.0) {
           setState(() {
             topBarOpacity = 0.0;
@@ -47,11 +47,6 @@ class _CustomAppBarState extends State<CustomAppBar>
       }
     });
     super.initState();
-  }
-
-  Future<bool> getData() async {
-    await Future<dynamic>.delayed(const Duration(milliseconds: 50));
-    return true;
   }
 
   @override
@@ -129,9 +124,8 @@ class _CustomAppBarState extends State<CustomAppBar>
                                     padding: const EdgeInsets.only(right: 8),
                                     child: new IconButton(
                                       icon: Icon(Icons.search,
-                                      color: AppTheme.grey,
-                                      size: 18),
-                                      onPressed: (){},
+                                          color: AppTheme.grey, size: 18),
+                                      onPressed: () {},
                                     ),
                                   ),
                                   Padding(
@@ -169,5 +163,4 @@ class _CustomAppBarState extends State<CustomAppBar>
       ],
     );
   }
-  }
-
+}
