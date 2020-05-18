@@ -2,11 +2,13 @@ import 'package:Adte/models/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatefulWidget {
-  const CustomAppBar({Key key, this.animationController, this.scrollController})
+  const CustomAppBar({Key key, this.animationController, this.scrollController, this.title})
       : super(key: key);
 
   final AnimationController animationController;
   final ScrollController scrollController;
+  final title;
+
   @override
   _CustomAppBarState createState() => _CustomAppBarState();
 }
@@ -97,16 +99,16 @@ class _CustomAppBarState extends State<CustomAppBar>
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(4.0),
                                 child: Text(
-                                  'All posts',
+                                  widget.title,
                                   textAlign: TextAlign.left,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     fontFamily: AppTheme.fontName,
                                     fontWeight: FontWeight.w700,
-                                    fontSize: 22 + 6 - 6 * topBarOpacity,
+                                    fontSize: 18 + 6 - 6 * topBarOpacity,
                                     letterSpacing: 1.2,
                                     color: AppTheme.darkerText,
                                   ),
@@ -121,7 +123,7 @@ class _CustomAppBarState extends State<CustomAppBar>
                               child: Row(
                                 children: <Widget>[
                                   Padding(
-                                    padding: const EdgeInsets.only(right: 8),
+                                    padding: const EdgeInsets.only(right: 4),
                                     child: new IconButton(
                                       icon: Icon(Icons.search,
                                           color: AppTheme.grey, size: 18),
@@ -129,7 +131,7 @@ class _CustomAppBarState extends State<CustomAppBar>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(right: 8),
+                                    padding: const EdgeInsets.only(right: 4),
                                     child: Icon(
                                       Icons.location_on,
                                       color: AppTheme.grey,

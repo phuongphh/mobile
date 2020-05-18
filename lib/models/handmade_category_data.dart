@@ -1,5 +1,5 @@
-class MealsListData {
-  MealsListData({
+class HandmadeCategoryData {
+  HandmadeCategoryData({
     this.imagePath = '',
     this.titleTxt = '',
     this.startColor = '',
@@ -15,34 +15,34 @@ class MealsListData {
   List<String> meals;
   int kacl;
 
-  static List<MealsListData> tabIconsList = <MealsListData>[
-    MealsListData(
+  static List<HandmadeCategoryData> tabIconsList = <HandmadeCategoryData>[
+    HandmadeCategoryData(
       imagePath: 'assets/fitness_app/breakfast.png',
-      titleTxt: 'Breakfast',
+      titleTxt: 'Food',
       kacl: 525,
       meals: <String>['Bread,', 'Peanut butter,', 'Apple'],
       startColor: '#FA7D82',
       endColor: '#FFB295',
     ),
-    MealsListData(
+    HandmadeCategoryData(
       imagePath: 'assets/fitness_app/lunch.png',
-      titleTxt: 'Lunch',
+      titleTxt: 'Leather',
       kacl: 602,
       meals: <String>['Salmon,', 'Mixed veggies,', 'Avocado'],
       startColor: '#738AE6',
       endColor: '#5C5EDD',
     ),
-    MealsListData(
+    HandmadeCategoryData(
       imagePath: 'assets/fitness_app/snack.png',
-      titleTxt: 'Snack',
+      titleTxt: 'Ceramic',
       kacl: 0,
       meals: <String>['Recommend:', '800 kcal'],
       startColor: '#FE95B6',
       endColor: '#FF5287',
     ),
-    MealsListData(
+    HandmadeCategoryData(
       imagePath: 'assets/fitness_app/dinner.png',
-      titleTxt: 'Dinner',
+      titleTxt: 'Clothes',
       kacl: 0,
       meals: <String>['Recommend:', '703 kcal'],
       startColor: '#6F72CA',

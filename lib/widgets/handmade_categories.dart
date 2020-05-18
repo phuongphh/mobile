@@ -1,12 +1,10 @@
 import 'package:Adte/models/app_theme.dart';
-import 'package:Adte/models/meals_list_data.dart';
+import 'package:Adte/models/handmade_category_data.dart';
 import 'package:Adte/main.dart';
 import 'package:flutter/material.dart';
 
-import 'package:Adte/main.dart';
-
-class MealsListView extends StatefulWidget {
-  const MealsListView(
+class HandmadeCategories extends StatefulWidget {
+  const HandmadeCategories(
       {Key key, this.mainScreenAnimationController, this.mainScreenAnimation})
       : super(key: key);
 
@@ -14,13 +12,13 @@ class MealsListView extends StatefulWidget {
   final Animation<dynamic> mainScreenAnimation;
 
   @override
-  _MealsListViewState createState() => _MealsListViewState();
+  _HandmadeCategoriesState createState() => _HandmadeCategoriesState();
 }
 
-class _MealsListViewState extends State<MealsListView>
+class _HandmadeCategoriesState extends State<HandmadeCategories>
     with TickerProviderStateMixin {
   AnimationController animationController;
-  List<MealsListData> mealsListData = MealsListData.tabIconsList;
+  List<HandmadeCategoryData> handmadeCategoryData = HandmadeCategoryData.tabIconsList;
 
   @override
   void initState() {
@@ -56,11 +54,11 @@ class _MealsListViewState extends State<MealsListView>
               child: ListView.builder(
                 padding: const EdgeInsets.only(
                     top: 0, bottom: 0, right: 16, left: 16),
-                itemCount: mealsListData.length,
+                itemCount: handmadeCategoryData.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
                   final int count =
-                      mealsListData.length > 10 ? 10 : mealsListData.length;
+                      handmadeCategoryData.length > 10 ? 10 : handmadeCategoryData.length;
                   final Animation<double> animation =
                       Tween<double>(begin: 0.0, end: 1.0).animate(
                           CurvedAnimation(
@@ -69,8 +67,8 @@ class _MealsListViewState extends State<MealsListView>
                                   curve: Curves.fastOutSlowIn)));
                   animationController.forward();
 
-                  return MealsView(
-                    mealsListData: mealsListData[index],
+                  return HandmadesView(
+                    handmadeListData: handmadeCategoryData[index],
                     animation: animation,
                     animationController: animationController,
                   );
@@ -84,12 +82,12 @@ class _MealsListViewState extends State<MealsListView>
   }
 }
 
-class MealsView extends StatelessWidget {
-  const MealsView(
-      {Key key, this.mealsListData, this.animationController, this.animation})
+class HandmadesView extends StatelessWidget {
+  const HandmadesView(
+      {Key key, this.handmadeListData, this.animationController, this.animation})
       : super(key: key);
 
-  final MealsListData mealsListData;
+  final HandmadeCategoryData handmadeListData;
   final AnimationController animationController;
   final Animation<dynamic> animation;
 
@@ -114,15 +112,15 @@ class MealsView extends StatelessWidget {
                       decoration: BoxDecoration(
                         boxShadow: <BoxShadow>[
                           BoxShadow(
-                              color: HexColor(mealsListData.endColor)
+                              color: HexColor(handmadeListData.endColor)
                                   .withOpacity(0.6),
                               offset: const Offset(1.1, 4.0),
                               blurRadius: 8.0),
                         ],
                         gradient: LinearGradient(
                           colors: <HexColor>[
-                            HexColor(mealsListData.startColor),
-                            HexColor(mealsListData.endColor),
+                            HexColor(handmadeListData.startColor),
+                            HexColor(handmadeListData.endColor),
                           ],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
@@ -142,7 +140,7 @@ class MealsView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              mealsListData.titleTxt,
+                              handmadeListData.titleTxt,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: AppTheme.fontName,
@@ -161,7 +159,7 @@ class MealsView extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      mealsListData.meals.join('\n'),
+                                      handmadeListData.meals.join('\n'),
                                       style: TextStyle(
                                         fontFamily: AppTheme.fontName,
                                         fontWeight: FontWeight.w500,
@@ -174,13 +172,13 @@ class MealsView extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            mealsListData.kacl != 0
+                            handmadeListData.kacl != 0
                                 ? Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: <Widget>[
                                       Text(
-                                        mealsListData.kacl.toString(),
+                                        handmadeListData.kacl.toString(),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: AppTheme.fontName,
@@ -223,7 +221,7 @@ class MealsView extends StatelessWidget {
                                       padding: const EdgeInsets.all(6.0),
                                       child: Icon(
                                         Icons.add,
-                                        color: HexColor(mealsListData.endColor),
+                                        color: HexColor(handmadeListData.endColor),
                                         size: 24,
                                       ),
                                     ),
@@ -251,7 +249,7 @@ class MealsView extends StatelessWidget {
                     child: SizedBox(
                       width: 80,
                       height: 80,
-                      child: Image.asset(mealsListData.imagePath),
+                      child: Image.asset(handmadeListData.imagePath),
                     ),
                   )
                 ],

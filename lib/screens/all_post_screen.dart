@@ -1,9 +1,8 @@
 import 'package:Adte/widgets/body_measurement.dart';
+import 'package:Adte/widgets/dashboard.dart';
 import 'package:Adte/widgets/glass_view.dart';
-import 'package:Adte/widgets/services_view.dart';
 import 'package:Adte/widgets/title_view.dart';
 import 'package:Adte/models/app_theme.dart';
-import 'package:Adte/widgets/meals_list_view.dart';
 import 'package:Adte/widgets/water_view.dart';
 import 'package:flutter/material.dart';
 import 'package:Adte/widgets/custom_app_bar.dart';
@@ -22,6 +21,7 @@ class _AllPostScreenState extends State<AllPostScreen>
 
   List<Widget> listViews = <Widget>[];
   final ScrollController scrollController = ScrollController();
+  final title = 'All posts';
 
   @override
   void initState() {
@@ -34,44 +34,23 @@ class _AllPostScreenState extends State<AllPostScreen>
 
     listViews.add(
       TitleView(
-        titleTxt: 'Services',
-        subTxt: 'Categories',
+        titleTxt: 'Dashboard',
+        subTxt: 'more',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
             curve:
-                Interval((1 / count) * 0, 1.0, curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController,
-      ),
-    );
-    listViews.add(
-      ServicesView(
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController,
-            curve:
-                Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController,
-      ),
-    );
-    listViews.add(
-      TitleView(
-        titleTxt: 'Meals today',
-        subTxt: 'Customize',
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController,
-            curve:
-                Interval((1 / count) * 2, 1.0, curve: Curves.fastOutSlowIn))),
+                Interval((1 / count) * 6, 1.0, curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController,
       ),
     );
 
     listViews.add(
-      MealsListView(
-        mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
-            CurvedAnimation(
-                parent: widget.animationController,
-                curve: Interval((1 / count) * 3, 1.0,
-                    curve: Curves.fastOutSlowIn))),
-        mainScreenAnimationController: widget.animationController,
+      Dashboard(
+        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController,
+            curve:
+                Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
+        animationController: widget.animationController,
       ),
     );
 
@@ -96,6 +75,7 @@ class _AllPostScreenState extends State<AllPostScreen>
         animationController: widget.animationController,
       ),
     );
+
     listViews.add(
       TitleView(
         titleTxt: 'Water',
@@ -143,7 +123,7 @@ class _AllPostScreenState extends State<AllPostScreen>
         body: Stack(
           children: <Widget>[
             getMainListViewUI(),
-            CustomAppBar(animationController: widget.animationController, scrollController: scrollController),
+            CustomAppBar(animationController: widget.animationController, scrollController: scrollController, title: title),
             SizedBox(
               height: MediaQuery.of(context).padding.bottom,
             )
