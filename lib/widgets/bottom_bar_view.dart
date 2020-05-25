@@ -4,8 +4,6 @@ import 'package:Adte/models/tabIcon_data.dart';
 import 'package:Adte/main.dart';
 import 'package:flutter/material.dart';
 
-import 'package:Adte/main.dart';
-import '../models/tabIcon_data.dart';
 
 class BottomBarView extends StatefulWidget {
   const BottomBarView(
@@ -56,10 +54,10 @@ class _BottomBarViewState extends State<BottomBarView>
                 child: Column(
                   children: <Widget>[
                     SizedBox(
-                      height: 62,
+                      height: 54,
                       child: Padding(
                         padding:
-                            const EdgeInsets.only(left: 8, right: 8, top: 4),
+                            const EdgeInsets.only(left: 4, right: 4, top: 2),
                         child: Row(
                           children: <Widget>[
                             Expanded(
@@ -86,7 +84,7 @@ class _BottomBarViewState extends State<BottomBarView>
                                           parent: animationController,
                                           curve: Curves.fastOutSlowIn))
                                       .value *
-                                  64.0,
+                                  54.0,
                             ),
                             Expanded(
                               child: TabIcons(
@@ -111,7 +109,7 @@ class _BottomBarViewState extends State<BottomBarView>
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).padding.bottom,
+                      height: MediaQuery.of(context).padding.bottom - 10,
                     )
                   ],
                 ),
@@ -124,7 +122,7 @@ class _BottomBarViewState extends State<BottomBarView>
               EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
           child: SizedBox(
             width: 38 * 2.0,
-            height: 38 + 62.0,
+            height: 38 + 42.0,
             child: Container(
               alignment: Alignment.topCenter,
               color: Colors.transparent,

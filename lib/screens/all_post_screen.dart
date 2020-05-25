@@ -1,6 +1,6 @@
 import 'package:Adte/widgets/body_measurement.dart';
 import 'package:Adte/widgets/dashboard.dart';
-import 'package:Adte/widgets/glass_view.dart';
+import 'package:Adte/widgets/scroll_down_card.dart';
 import 'package:Adte/widgets/title_view.dart';
 import 'package:Adte/models/app_theme.dart';
 import 'package:Adte/widgets/water_view.dart';
@@ -99,7 +99,7 @@ class _AllPostScreenState extends State<AllPostScreen>
       ),
     );
     listViews.add(
-      GlassView(
+      ScrollDownCard(
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(
               CurvedAnimation(
                   parent: widget.animationController,
