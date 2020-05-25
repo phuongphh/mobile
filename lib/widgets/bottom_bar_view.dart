@@ -57,7 +57,7 @@ class _BottomBarViewState extends State<BottomBarView>
                       height: 54,
                       child: Padding(
                         padding:
-                            const EdgeInsets.only(left: 4, right: 4, top: 2),
+                            const EdgeInsets.only(left: 4, right: 4, top: 1),
                         child: Row(
                           children: <Widget>[
                             Expanded(
