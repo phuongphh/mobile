@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Adte/main.dart';
 import 'package:Adte/models/app_theme.dart';
+import 'package:Adte/models/hex_color.dart';
 
 class WorkoutView extends StatelessWidget {
   final AnimationController animationController;

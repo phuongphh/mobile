@@ -1,7 +1,7 @@
 import 'wave_view.dart';
 import 'package:Adte/models/app_theme.dart';
-import 'package:Adte/main.dart';
 import 'package:flutter/material.dart';
+import 'package:Adte/models/hex_color.dart';
 
 class WaterView extends StatefulWidget {
   const WaterView({Key key, this.mainScreenAnimationController, this.mainScreenAnimation}) : super(key: key);
