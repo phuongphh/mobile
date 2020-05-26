@@ -1,6 +1,6 @@
 import 'package:Adte/design_course/design_course_app_theme.dart';
 import 'package:Adte/design_course/models/category.dart';
-import 'package:Adte/main.dart';
+import 'package:Adte/models/hex_color.dart';
 import 'package:flutter/material.dart';
 
 class CategoryListView extends StatefulWidget {

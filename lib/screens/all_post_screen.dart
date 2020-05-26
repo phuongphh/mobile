@@ -6,6 +6,10 @@ import 'package:Adte/models/app_theme.dart';
 import 'package:Adte/widgets/water_view.dart';
 import 'package:flutter/material.dart';
 import 'package:Adte/widgets/custom_app_bar.dart';
+import 'package:Adte/models/article.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 class AllPostScreen extends StatefulWidget {
   const AllPostScreen({Key key, this.animationController}) : super(key: key);
@@ -22,12 +26,29 @@ class _AllPostScreenState extends State<AllPostScreen>
   List<Widget> listViews = <Widget>[];
   final ScrollController scrollController = ScrollController();
   final title = 'All posts';
+  Future<Article> futureArticle;
 
   @override
   void initState() {
     addAllListData();
     super.initState();
+    futureArticle = fetchArticle();
   }
+
+Future<Article> fetchArticle() async {
+  final response =
+      await http.get('https://jsonplaceholder.typicode.com/albums/1');
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return Article.fromJson(json.decode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
+}
 
   void addAllListData() {
     const int count = 9;
