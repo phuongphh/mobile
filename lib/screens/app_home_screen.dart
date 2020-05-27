@@ -5,7 +5,7 @@ import 'package:Adte/screens/handmades_screen.dart';
 import 'package:Adte/screens/services_screen.dart';
 import 'package:Adte/widgets/bottom_bar_view.dart';
 import 'package:Adte/models/app_theme.dart';
-import 'all_post_screen.dart';
+import 'package:Adte/screens/all_post_screen.dart';
 import 'package:Adte/design_course/home_design_course.dart';
 
 class AppHomeScreen extends StatefulWidget {

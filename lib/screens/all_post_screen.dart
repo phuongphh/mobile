@@ -56,23 +56,7 @@ class _AllPostScreenState extends State<AllPostScreen>
   }
 
   void addAllListData( List<Article> listArticle) {
-    listArticle.forEach((element) {
-      listViews.add(
-        ArticleCard(
-          animationController: widget.animationController,
-          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
-              CurvedAnimation(
-                  parent: widget.animationController,
-                  curve:
-                      Interval((1 / 9) * 5, 1.0, curve: Curves.fastOutSlowIn)
-              )
-          ),
-          article: element,
-        )
-      );
-    });
-
-    const int count = 9;
+    int count = listArticle.length + 3;
 
     listViews.add(
       TitleView(
@@ -96,27 +80,21 @@ class _AllPostScreenState extends State<AllPostScreen>
       ),
     );
 
-    listViews.add(
-      TitleView(
-        titleTxt: 'Handmade stuffs',
-        subTxt: 'Today',
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController,
-            curve:
-                Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController,
-      ),
-    );
-
-    listViews.add(
-      BodyMeasurementView(
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController,
-            curve:
-                Interval((1 / count) * 5, 1.0, curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController,
-      ),
-    );
+    listArticle.forEach((element) {
+      listViews.add(
+        ArticleCard(
+          animationController: widget.animationController,
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                  parent: widget.animationController,
+                  curve:
+                      Interval((1 / count) * 5, 1.0, curve: Curves.fastOutSlowIn)
+              )
+          ),
+          article: element,
+        )
+      );
+    });
 
     listViews.add(
       TitleView(
@@ -151,10 +129,10 @@ class _AllPostScreenState extends State<AllPostScreen>
     );
   }
 
-  Future<bool> getData() async {
-    await Future<dynamic>.delayed(const Duration(milliseconds: 50));
-    return true;
-  }
+  // Future<bool> getData() async {
+  //   await Future<dynamic>.delayed(const Duration(milliseconds: 50));
+  //   return true;
+  // }
 
   @override
   Widget build(BuildContext context) {
