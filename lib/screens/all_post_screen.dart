@@ -1,8 +1,7 @@
 import 'package:Adte/widgets/article_card.dart';
-import 'package:Adte/widgets/body_measurement.dart';
 import 'package:Adte/widgets/dashboard.dart';
 import 'package:Adte/widgets/scroll_down_card.dart';
-import 'package:Adte/widgets/title_view.dart';
+import 'package:Adte/widgets/component_title.dart';
 import 'package:Adte/models/app_theme.dart';
 import 'package:Adte/widgets/water_view.dart';
 import 'package:flutter/material.dart';
@@ -41,12 +40,9 @@ class _AllPostScreenState extends State<AllPostScreen>
   Future<List<Article>> fetchArticles() async {
     final response = await http.get('http://18.141.176.197:1337/articles');
 
-    // final article = articleFromJson(jsonString);
-
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      
       return articleFromJson(response.body);
     } else {
       // If the server did not return a 200 OK response,
@@ -55,11 +51,11 @@ class _AllPostScreenState extends State<AllPostScreen>
     }
   }
 
-  void addAllListData( List<Article> listArticle) {
-    int count = listArticle.length + 3;
+  void addAllListData(List<Article> listArticle) {
+    int count = 9;
 
     listViews.add(
-      TitleView(
+      ComponentTitle(
         titleTxt: 'Dashboard',
         subTxt: 'more',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
@@ -75,29 +71,41 @@ class _AllPostScreenState extends State<AllPostScreen>
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
             curve:
-                Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
+                Interval((1 / count) * 2, 1.0, curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController,
       ),
     );
 
+    listViews.add(
+      ComponentTitle(
+        titleTxt: 'Posts',
+        subTxt: 'more',
+        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController,
+            curve:
+                Interval((1 / count) * 6, 1.0, curve: Curves.fastOutSlowIn))),
+        animationController: widget.animationController,
+      ),
+    );
+
+    // listViews.add(Divider(
+    //   height: 1,
+    //   color: AppTheme.grey.withOpacity(0.6),
+    // ));
+
     listArticle.forEach((element) {
-      listViews.add(
-        ArticleCard(
-          animationController: widget.animationController,
-          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
-              CurvedAnimation(
-                  parent: widget.animationController,
-                  curve:
-                      Interval((1 / count) * 5, 1.0, curve: Curves.fastOutSlowIn)
-              )
-          ),
-          article: element,
-        )
-      );
+      listViews.add(ArticleCard(
+        animationController: widget.animationController,
+        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController,
+            curve:
+                Interval((1 / count) * 5, 1.0, curve: Curves.fastOutSlowIn))),
+        article: element,
+      ));
     });
 
     listViews.add(
-      TitleView(
+      ComponentTitle(
         titleTxt: 'Water',
         subTxt: 'Aqua SmartBottle',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(

@@ -1,6 +1,6 @@
 import 'package:Adte/widgets/category_list_view.dart';
 import 'package:Adte/widgets/running_view.dart';
-import 'package:Adte/widgets/title_view.dart';
+import 'package:Adte/widgets/component_title.dart';
 import 'package:Adte/widgets/workout_view.dart';
 import 'package:flutter/material.dart';
 import 'package:Adte/models/app_theme.dart';
@@ -32,7 +32,7 @@ class _ServicesScreenState extends State<ServicesScreen>
     const int count = 5;
 
     listViews.add(
-      TitleView(
+      ComponentTitle(
         titleTxt: 'Your program',
         subTxt: 'Details',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
@@ -63,7 +63,7 @@ class _ServicesScreenState extends State<ServicesScreen>
     );
 
     listViews.add(
-      TitleView(
+      ComponentTitle(
         titleTxt: 'Categories',
         subTxt: 'more',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
