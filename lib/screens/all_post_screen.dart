@@ -1,3 +1,4 @@
+import 'package:Adte/widgets/article_card.dart';
 import 'package:Adte/widgets/body_measurement.dart';
 import 'package:Adte/widgets/dashboard.dart';
 import 'package:Adte/widgets/scroll_down_card.dart';
@@ -9,7 +10,6 @@ import 'package:Adte/widgets/custom_app_bar.dart';
 import 'package:Adte/models/article.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'dart:convert';
 
 class AllPostScreen extends StatefulWidget {
   const AllPostScreen({Key key, this.animationController}) : super(key: key);
@@ -26,31 +26,52 @@ class _AllPostScreenState extends State<AllPostScreen>
   List<Widget> listViews = <Widget>[];
   final ScrollController scrollController = ScrollController();
   final title = 'All posts';
-  Future<Article> futureArticle;
+  Future<List<Article>> futureArticles;
 
   @override
   void initState() {
-    addAllListData();
+    // addAllListData();
     super.initState();
-    futureArticle = fetchArticle();
+    futureArticles = fetchArticles();
+    futureArticles.then((value) {
+      addAllListData(value);
+    });
   }
 
-Future<Article> fetchArticle() async {
-  final response =
-      await http.get('https://jsonplaceholder.typicode.com/albums/1');
+  Future<List<Article>> fetchArticles() async {
+    final response = await http.get('http://18.141.176.197:1337/articles');
 
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return Article.fromJson(json.decode(response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
+    // final article = articleFromJson(jsonString);
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      
+      return articleFromJson(response.body);
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load articles');
+    }
   }
-}
 
-  void addAllListData() {
+  void addAllListData( List<Article> listArticle) {
+    listArticle.forEach((element) {
+      listViews.add(
+        ArticleCard(
+          animationController: widget.animationController,
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                  parent: widget.animationController,
+                  curve:
+                      Interval((1 / 9) * 5, 1.0, curve: Curves.fastOutSlowIn)
+              )
+          ),
+          article: element,
+        )
+      );
+    });
+
     const int count = 9;
 
     listViews.add(
@@ -144,7 +165,10 @@ Future<Article> fetchArticle() async {
         body: Stack(
           children: <Widget>[
             getMainListViewUI(),
-            CustomAppBar(animationController: widget.animationController, scrollController: scrollController, title: title),
+            CustomAppBar(
+                animationController: widget.animationController,
+                scrollController: scrollController,
+                title: title),
             SizedBox(
               height: MediaQuery.of(context).padding.bottom,
             )
@@ -155,9 +179,9 @@ Future<Article> fetchArticle() async {
   }
 
   Widget getMainListViewUI() {
-    return FutureBuilder<bool>(
-      future: getData(),
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+    return FutureBuilder<List<Article>>(
+      future: futureArticles,
+      builder: (BuildContext context, AsyncSnapshot<List<Article>> snapshot) {
         if (!snapshot.hasData) {
           return const SizedBox();
         } else {

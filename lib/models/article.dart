@@ -6,7 +6,7 @@ import 'dart:convert';
 
 List<Article> articleFromJson(String str) => List<Article>.from(json.decode(str).map((x) => Article.fromJson(x)));
 
-String articleToJson(List<Article> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+// String articleToJson(List<Article> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Article {
     String status;

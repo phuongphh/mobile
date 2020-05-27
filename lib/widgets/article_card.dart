@@ -1,11 +1,13 @@
 import 'package:Adte/models/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:Adte/models/article.dart';
 
 class ArticleCard extends StatelessWidget {
   final AnimationController animationController;
   final Animation animation;
+  final Article article;
 
-  const ArticleCard({Key key, this.animationController, this.animation})
+  const ArticleCard({Key key, this.animationController, this.animation, this.article})
       : super(key: key);
 
   @override
@@ -49,7 +51,7 @@ class ArticleCard extends StatelessWidget {
                             padding: const EdgeInsets.only(
                                 left: 4, bottom: 8, top: 16),
                             child: Text(
-                              'Weight',
+                              article.description,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: AppTheme.fontName,
@@ -71,7 +73,7 @@ class ArticleCard extends StatelessWidget {
                                     padding: const EdgeInsets.only(
                                         left: 4, bottom: 3),
                                     child: Text(
-                                      '206.8',
+                                      article.content,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontFamily: AppTheme.fontName,

@@ -1,11 +1,13 @@
 import 'package:Adte/models/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:Adte/models/article.dart';
 
 class BodyMeasurementView extends StatelessWidget {
   final AnimationController animationController;
   final Animation animation;
+  final Article article;
 
-  const BodyMeasurementView({Key key, this.animationController, this.animation})
+  const BodyMeasurementView({Key key, this.animationController, this.animation, this.article})
       : super(key: key);
 
   @override

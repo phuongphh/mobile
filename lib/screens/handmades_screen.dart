@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'package:Adte/widgets/category_list_view.dart';
 import 'package:Adte/widgets/running_view.dart';
 import 'package:Adte/widgets/title_view.dart';
 import 'package:Adte/widgets/workout_view.dart';

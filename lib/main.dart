@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:Adte/models/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Adte/routes.dart';
@@ -23,6 +24,11 @@ class MyApp extends StatelessWidget {
     ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        textTheme: AppTheme.textTheme,
+        platform: TargetPlatform.iOS,
+      ),
       home: NavigationHomeScreen(),
     );
   }
