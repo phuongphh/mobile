@@ -1,13 +1,13 @@
 import 'package:Adte/models/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class TitleView extends StatelessWidget {
+class ComponentTitle extends StatelessWidget {
   final String titleTxt;
   final String subTxt;
   final AnimationController animationController;
   final Animation animation;
 
-  const TitleView(
+  const ComponentTitle(
       {Key key,
       this.titleTxt: "",
       this.subTxt: "",

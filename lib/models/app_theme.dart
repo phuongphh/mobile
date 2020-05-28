@@ -86,4 +86,21 @@ class AppTheme {
     letterSpacing: 0.2,
     color: lightText, // was lightText
   );
+
+  static articleCardPadding(BuildContext context) {
+    return EdgeInsets.only(
+        left: MediaQuery.of(context).size.width * 0.03,
+        right: MediaQuery.of(context).size.width * 0.03,
+        top: MediaQuery.of(context).size.width * 0.02,
+        bottom: MediaQuery.of(context).size.width * 0.02);
+  }
+
+  static dashboardPadding(BuildContext context) {
+    return EdgeInsets.only(
+        left: MediaQuery.of(context).size.width * 0.03,
+        right: MediaQuery.of(context).size.width * 0.03,
+        top: MediaQuery.of(context).size.width * 0.02,
+        bottom: MediaQuery.of(context).size.width * 0.02);
+  }
+
 }
