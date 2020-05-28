@@ -1,4 +1,5 @@
 import 'package:Adte/models/app_theme.dart';
+import 'package:Adte/themes/article_card_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:Adte/models/article.dart';
 
@@ -7,7 +8,8 @@ class ArticleCard extends StatelessWidget {
   final Animation animation;
   final Article article;
 
-  const ArticleCard({Key key, this.animationController, this.animation, this.article})
+  const ArticleCard(
+      {Key key, this.animationController, this.animation, this.article})
       : super(key: key);
 
   @override
@@ -25,39 +27,30 @@ class ArticleCard extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   color: AppTheme.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(8.0),
-                      bottomLeft: Radius.circular(8.0),
-                      bottomRight: Radius.circular(8.0),
-                      topRight: Radius.circular(68.0)),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                        color: AppTheme.grey.withOpacity(0.2),
-                        offset: Offset(1.1, 1.1),
-                        blurRadius: 10.0),
-                  ],
+                  borderRadius: ArticleCardTheme.articleCardBorderRadius,
+                  boxShadow: <BoxShadow>[ArticleCardTheme.articleCardBoxShadow],
                 ),
                 child: Column(
                   children: <Widget>[
                     Padding(
                       padding:
-                          const EdgeInsets.only(top: 16, left: 16, right: 24),
+                          const EdgeInsets.only(left: 8, right: 8, top: 8),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(
-                                left: 4, bottom: 8, top: 16),
+                                left: 4, right: 4, bottom: 8),
                             child: Text(
                               article.description,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: AppTheme.fontName,
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 16,
+                                  fontSize: 18,
                                   letterSpacing: -0.1,
-                                  color: AppTheme.darkText),
+                                  color: AppTheme.nearlyDarkBlue),
                             ),
                           ),
                           Row(
@@ -77,23 +70,8 @@ class ArticleCard extends StatelessWidget {
                                       style: TextStyle(
                                         fontFamily: AppTheme.fontName,
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 32,
-                                        color: AppTheme.nearlyDarkBlue,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8, bottom: 8),
-                                    child: Text(
-                                      'Ibs',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontFamily: AppTheme.fontName,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 18,
-                                        letterSpacing: -0.2,
-                                        color: AppTheme.nearlyDarkBlue,
+                                        fontSize: 12,
+                                        color: AppTheme.darkText
                                       ),
                                     ),
                                   ),
@@ -108,8 +86,7 @@ class ArticleCard extends StatelessWidget {
                                     children: <Widget>[
                                       Icon(
                                         Icons.access_time,
-                                        color: AppTheme.grey
-                                            .withOpacity(0.5),
+                                        color: AppTheme.grey.withOpacity(0.5),
                                         size: 16,
                                       ),
                                       Padding(
@@ -119,13 +96,12 @@ class ArticleCard extends StatelessWidget {
                                           'Today 8:26 AM',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                            fontFamily:
-                                                AppTheme.fontName,
+                                            fontFamily: AppTheme.fontName,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 14,
                                             letterSpacing: 0.0,
-                                            color: AppTheme.grey
-                                                .withOpacity(0.5),
+                                            color:
+                                                AppTheme.grey.withOpacity(0.5),
                                           ),
                                         ),
                                       ),
@@ -170,36 +146,9 @@ class ArticleCard extends StatelessWidget {
                       child: Row(
                         children: <Widget>[
                           Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  '185 cm',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: AppTheme.fontName,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    letterSpacing: -0.2,
-                                    color: AppTheme.darkText,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 6),
-                                  child: Text(
-                                    'Height',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: AppTheme.fontName,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                      color: AppTheme.grey
-                                          .withOpacity(0.5),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.all(Radius.circular(60.0)),
+                              //child: article.images;
                             ),
                           ),
                           Expanded(
@@ -231,8 +180,7 @@ class ArticleCard extends StatelessWidget {
                                           fontFamily: AppTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
-                                          color: AppTheme.grey
-                                              .withOpacity(0.5),
+                                          color: AppTheme.grey.withOpacity(0.5),
                                         ),
                                       ),
                                     ),
@@ -269,8 +217,7 @@ class ArticleCard extends StatelessWidget {
                                           fontFamily: AppTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
-                                          color: AppTheme.grey
-                                              .withOpacity(0.5),
+                                          color: AppTheme.grey.withOpacity(0.5),
                                         ),
                                       ),
                                     ),

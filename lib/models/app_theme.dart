@@ -103,4 +103,10 @@ class AppTheme {
         bottom: MediaQuery.of(context).size.width * 0.02);
   }
 
+static const articleBorderRadius =  BorderRadius.only(
+                      topLeft: Radius.circular(8.0),
+                      bottomLeft: Radius.circular(8.0),
+                      bottomRight: Radius.circular(8.0),
+                      topRight: Radius.circular(68.0));
+
 }

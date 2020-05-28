@@ -1,4 +1,5 @@
 import 'package:Adte/widgets/article_card.dart';
+import 'package:Adte/widgets/body_measurement.dart';
 import 'package:Adte/widgets/dashboard.dart';
 import 'package:Adte/widgets/scroll_down_card.dart';
 import 'package:Adte/widgets/component_title.dart';
@@ -99,7 +100,7 @@ class _AllPostScreenState extends State<AllPostScreen>
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
             curve:
-                Interval((1 / count) * 5, 1.0, curve: Curves.fastOutSlowIn))),
+                Interval((1 / count) * 6, 1.0, curve: Curves.fastOutSlowIn))),
         article: element,
       ));
     });
@@ -126,6 +127,29 @@ class _AllPostScreenState extends State<AllPostScreen>
         mainScreenAnimationController: widget.animationController,
       ),
     );
+
+    listViews.add(
+      ComponentTitle(
+        titleTxt: 'Body measurement',
+        subTxt: 'more',
+        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController,
+            curve:
+                Interval((1 / count) * 6, 1.0, curve: Curves.fastOutSlowIn))),
+        animationController: widget.animationController,
+      ),
+    );
+
+    listViews.add(
+      BodyMeasurementView(
+        animationController: widget.animationController,
+        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController,
+            curve:
+                Interval((1 / count) * 6, 1.0, curve: Curves.fastOutSlowIn)))
+      ),
+    );
+
     listViews.add(
       ScrollDownCard(
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(

@@ -6,73 +6,221 @@ import 'dart:convert';
 
 List<Article> articleFromJson(String str) => List<Article>.from(json.decode(str).map((x) => Article.fromJson(x)));
 
-// String articleToJson(List<Article> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String articleToJson(List<Article> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Article {
     String status;
-    List<Image> images;
+    List<Photo> photos;
     String id;
+    String description;
+    String content;
     DateTime createdAt;
     DateTime updatedAt;
     int v;
-    String content;
-    String description;
-    String highlight;
+    String hightlight;
     int price;
     int promotion;
     String tag;
+    Author author;
+    Category category;
+    Location location;
     String articleId;
 
     Article({
         this.status,
-        this.images,
+        this.photos,
         this.id,
+        this.description,
+        this.content,
         this.createdAt,
         this.updatedAt,
         this.v,
-        this.content,
-        this.description,
-        this.highlight,
+        this.hightlight,
         this.price,
         this.promotion,
         this.tag,
+        this.author,
+        this.category,
+        this.location,
         this.articleId,
     });
 
     factory Article.fromJson(Map<String, dynamic> json) => Article(
-        status: json["status"],
-        images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
+        status: json["status"] == null ? null : json["status"],
+        photos: List<Photo>.from(json["Photos"].map((x) => Photo.fromJson(x))),
         id: json["_id"],
+        description: json["description"],
+        content: json["content"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         v: json["__v"],
-        content: json["content"],
-        description: json["description"],
-        highlight: json["highlight"],
-        price: json["price"],
-        promotion: json["promotion"],
-        tag: json["tag"],
+        hightlight: json["hightlight"] == null ? null : json["hightlight"],
+        price: json["price"] == null ? null : json["price"],
+        promotion: json["promotion"] == null ? null : json["promotion"],
+        tag: json["tag"] == null ? null : json["tag"],
+        author: json["author"] == null ? null : Author.fromJson(json["author"]),
+        category: json["category"] == null ? null : Category.fromJson(json["category"]),
+        location: json["location"] == null ? null : Location.fromJson(json["location"]),
         articleId: json["id"],
     );
 
     Map<String, dynamic> toJson() => {
-        "status": status,
-        "images": List<dynamic>.from(images.map((x) => x.toJson())),
+        "status": status == null ? null : status,
+        "Photos": List<dynamic>.from(photos.map((x) => x.toJson())),
         "_id": id,
+        "description": description,
+        "content": content,
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
         "__v": v,
-        "content": content,
-        "description": description,
-        "highlight": highlight,
-        "price": price,
-        "promotion": promotion,
-        "tag": tag,
+        "hightlight": hightlight == null ? null : hightlight,
+        "price": price == null ? null : price,
+        "promotion": promotion == null ? null : promotion,
+        "tag": tag == null ? null : tag,
+        "author": author == null ? null : author.toJson(),
+        "category": category == null ? null : category.toJson(),
+        "location": location == null ? null : location.toJson(),
         "id": articleId,
     };
 }
 
-class Image {
+class Author {
+    bool confirmed;
+    bool blocked;
+    String id;
+    String username;
+    String email;
+    String provider;
+    DateTime createdAt;
+    DateTime updatedAt;
+    int v;
+    String role;
+    String authorId;
+
+    Author({
+        this.confirmed,
+        this.blocked,
+        this.id,
+        this.username,
+        this.email,
+        this.provider,
+        this.createdAt,
+        this.updatedAt,
+        this.v,
+        this.role,
+        this.authorId,
+    });
+
+    factory Author.fromJson(Map<String, dynamic> json) => Author(
+        confirmed: json["confirmed"],
+        blocked: json["blocked"],
+        id: json["_id"],
+        username: json["username"],
+        email: json["email"],
+        provider: json["provider"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        v: json["__v"],
+        role: json["role"],
+        authorId: json["id"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "confirmed": confirmed,
+        "blocked": blocked,
+        "_id": id,
+        "username": username,
+        "email": email,
+        "provider": provider,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "__v": v,
+        "role": role,
+        "id": authorId,
+    };
+}
+
+class Category {
+    String id;
+    String name;
+    String subCategory;
+    DateTime createdAt;
+    DateTime updatedAt;
+    int v;
+    String categoryId;
+
+    Category({
+        this.id,
+        this.name,
+        this.subCategory,
+        this.createdAt,
+        this.updatedAt,
+        this.v,
+        this.categoryId,
+    });
+
+    factory Category.fromJson(Map<String, dynamic> json) => Category(
+        id: json["_id"],
+        name: json["name"],
+        subCategory: json["sub_category"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        v: json["__v"],
+        categoryId: json["id"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "_id": id,
+        "name": name,
+        "sub_category": subCategory,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "__v": v,
+        "id": categoryId,
+    };
+}
+
+class Location {
+    String id;
+    String nation;
+    String address;
+    DateTime createdAt;
+    DateTime updatedAt;
+    int v;
+    String locationId;
+
+    Location({
+        this.id,
+        this.nation,
+        this.address,
+        this.createdAt,
+        this.updatedAt,
+        this.v,
+        this.locationId,
+    });
+
+    factory Location.fromJson(Map<String, dynamic> json) => Location(
+        id: json["_id"],
+        nation: json["nation"],
+        address: json["Address"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        v: json["__v"],
+        locationId: json["id"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "_id": id,
+        "nation": nation,
+        "Address": address,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "__v": v,
+        "id": locationId,
+    };
+}
+
+class Photo {
     String id;
     String name;
     String alternativeText;
@@ -90,9 +238,9 @@ class Image {
     DateTime createdAt;
     DateTime updatedAt;
     int v;
-    String imageId;
+    String photoId;
 
-    Image({
+    Photo({
         this.id,
         this.name,
         this.alternativeText,
@@ -110,10 +258,10 @@ class Image {
         this.createdAt,
         this.updatedAt,
         this.v,
-        this.imageId,
+        this.photoId,
     });
 
-    factory Image.fromJson(Map<String, dynamic> json) => Image(
+    factory Photo.fromJson(Map<String, dynamic> json) => Photo(
         id: json["_id"],
         name: json["name"],
         alternativeText: json["alternativeText"],
@@ -131,7 +279,7 @@ class Image {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         v: json["__v"],
-        imageId: json["id"],
+        photoId: json["id"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -152,7 +300,7 @@ class Image {
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
         "__v": v,
-        "id": imageId,
+        "id": photoId,
     };
 }
 

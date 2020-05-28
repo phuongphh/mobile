@@ -1,5 +1,6 @@
 import 'package:Adte/models/app_theme.dart';
 import 'package:Adte/models/hex_color.dart';
+import 'package:Adte/themes/dashboard_theme.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -7,8 +8,7 @@ class Dashboard extends StatelessWidget {
   final AnimationController animationController;
   final Animation animation;
 
-  const Dashboard(
-      {Key key, this.animationController, this.animation})
+  const Dashboard({Key key, this.animationController, this.animation})
       : super(key: key);
 
   @override
@@ -26,17 +26,8 @@ class Dashboard extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   color: AppTheme.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(8.0),
-                      bottomLeft: Radius.circular(8.0),
-                      bottomRight: Radius.circular(8.0),
-                      topRight: Radius.circular(68.0)),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                        color: AppTheme.grey.withOpacity(0.2),
-                        offset: Offset(1.1, 1.1),
-                        blurRadius: 10.0),
-                  ],
+                  borderRadius: DashboardTheme.dashboardBorderRadius,
+                  boxShadow: <BoxShadow>[DashboardTheme.dashboardBoxShadow],
                 ),
                 child: Column(
                   children: <Widget>[
@@ -78,8 +69,7 @@ class Dashboard extends StatelessWidget {
                                                 'New',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                  fontFamily:
-                                                      AppTheme.fontName,
+                                                  fontFamily: AppTheme.fontName,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 16,
                                                   letterSpacing: -0.1,
@@ -109,13 +99,12 @@ class Dashboard extends StatelessWidget {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          AppTheme
-                                                              .fontName,
+                                                          AppTheme.fontName,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 16,
-                                                      color: AppTheme
-                                                          .darkerText,
+                                                      color:
+                                                          AppTheme.darkerText,
                                                     ),
                                                   ),
                                                 ),
@@ -128,14 +117,12 @@ class Dashboard extends StatelessWidget {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          AppTheme
-                                                              .fontName,
+                                                          AppTheme.fontName,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 12,
                                                       letterSpacing: -0.2,
-                                                      color: AppTheme
-                                                          .grey
+                                                      color: AppTheme.grey
                                                           .withOpacity(0.5),
                                                     ),
                                                   ),
@@ -177,8 +164,7 @@ class Dashboard extends StatelessWidget {
                                                 'Contacted',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                  fontFamily:
-                                                      AppTheme.fontName,
+                                                  fontFamily: AppTheme.fontName,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 16,
                                                   letterSpacing: -0.1,
@@ -208,13 +194,12 @@ class Dashboard extends StatelessWidget {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          AppTheme
-                                                              .fontName,
+                                                          AppTheme.fontName,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 16,
-                                                      color: AppTheme
-                                                          .darkerText,
+                                                      color:
+                                                          AppTheme.darkerText,
                                                     ),
                                                   ),
                                                 ),
@@ -227,14 +212,12 @@ class Dashboard extends StatelessWidget {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          AppTheme
-                                                              .fontName,
+                                                          AppTheme.fontName,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 12,
                                                       letterSpacing: -0.2,
-                                                      color: AppTheme
-                                                          .grey
+                                                      color: AppTheme.grey
                                                           .withOpacity(0.5),
                                                     ),
                                                   ),
@@ -268,8 +251,7 @@ class Dashboard extends StatelessWidget {
                                         ),
                                         border: new Border.all(
                                             width: 4,
-                                            color: AppTheme
-                                                .nearlyDarkBlue
+                                            color: AppTheme.nearlyDarkBlue
                                                 .withOpacity(0.2)),
                                       ),
                                       child: Column(
@@ -282,21 +264,18 @@ class Dashboard extends StatelessWidget {
                                             '${(1503 * animation.value).toInt()}',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              fontFamily:
-                                                  AppTheme.fontName,
+                                              fontFamily: AppTheme.fontName,
                                               fontWeight: FontWeight.normal,
                                               fontSize: 24,
                                               letterSpacing: 0.0,
-                                              color: AppTheme
-                                                  .nearlyDarkBlue,
+                                              color: AppTheme.nearlyDarkBlue,
                                             ),
                                           ),
                                           Text(
                                             'posts left',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              fontFamily:
-                                                  AppTheme.fontName,
+                                              fontFamily: AppTheme.fontName,
                                               fontWeight: FontWeight.bold,
                                               fontSize: 12,
                                               letterSpacing: 0.0,
@@ -404,8 +383,7 @@ class Dashboard extends StatelessWidget {
                                       fontFamily: AppTheme.fontName,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12,
-                                      color: AppTheme.grey
-                                          .withOpacity(0.5),
+                                      color: AppTheme.grey.withOpacity(0.5),
                                     ),
                                   ),
                                 ),
@@ -473,8 +451,7 @@ class Dashboard extends StatelessWidget {
                                           fontFamily: AppTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
-                                          color: AppTheme.grey
-                                              .withOpacity(0.5),
+                                          color: AppTheme.grey.withOpacity(0.5),
                                         ),
                                       ),
                                     ),
@@ -544,8 +521,7 @@ class Dashboard extends StatelessWidget {
                                           fontFamily: AppTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
-                                          color: AppTheme.grey
-                                              .withOpacity(0.5),
+                                          color: AppTheme.grey.withOpacity(0.5),
                                         ),
                                       ),
                                     ),
