@@ -50,16 +50,16 @@ class ArticleCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8, right: 16),
-                      child: Container(
-                        height: 2,
-                        decoration: BoxDecoration(
-                          color: AppTheme.background,
-                          borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 8, right: 16),
+                    //   child: Container(
+                    //     height: 2,
+                    //     decoration: BoxDecoration(
+                    //       color: AppTheme.background,
+                    //       borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    //     ),
+                    //   ),
+                    // ),
                     Row(
                       children: <Widget>[
                         Expanded(
@@ -76,36 +76,19 @@ class ArticleCard extends StatelessWidget {
                                         color: AppTheme.darkText),
                                   ),
                                 ))),
-                        Padding(
-                            padding: const EdgeInsets.only(
-                                left: 2, right: 2, top: 2, bottom: 2),
-                            child: Container(
-                                width: 100.0,
-                                height: 100.0,
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    article.content,
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontFamily: AppTheme.fontName,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 12,
-                                        color: AppTheme.darkText),
-                                  ),
-                                ))),
+                        _getPrimaryPhoto(article.photos)
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8, right: 16),
-                      child: Container(
-                        height: 2,
-                        decoration: BoxDecoration(
-                          color: AppTheme.background,
-                          borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 8, right: 16),
+                    //   child: Container(
+                    //     height: 2,
+                    //     decoration: BoxDecoration(
+                    //       color: AppTheme.background,
+                    //       borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    //     ),
+                    //   ),
+                    // ),
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 8, right: 8, top: 8, bottom: 8),
@@ -134,5 +117,36 @@ class ArticleCard extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+Widget _getPrimaryPhoto(List<Photo> photos) {
+  if (photos.isNotEmpty) {
+    return Padding(
+        padding: const EdgeInsets.only(left: 2, right: 2, top: 2, bottom: 2),
+        child: Container(
+            width: 120.0,
+            height: 120.0,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                    color: AppTheme.grey.withOpacity(0.6),
+                    offset: const Offset(2.0, 4.0),
+                    blurRadius: 8),
+              ],
+            ),
+
+            // child: ClipRRect(
+            //     borderRadius: const BorderRadius.all(Radius.circular(60.0)),
+            //     child: Image.network('http://18.141.176.197:1337' + photos.elementAt(0).url)))
+            child: CircleAvatar(
+              radius: 60,
+              backgroundImage: NetworkImage(
+                  'http://18.141.176.197:1337' + photos.elementAt(0).url),
+              backgroundColor: Colors.transparent,
+            )));
+  } else {
+    return SizedBox.shrink();
   }
 }
