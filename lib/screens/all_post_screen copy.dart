@@ -1,7 +1,7 @@
 import 'package:Adte/widgets/body_measurement.dart';
+import 'package:Adte/widgets/component_title.dart';
 import 'package:Adte/widgets/dashboard.dart';
 import 'package:Adte/widgets/scroll_down_card.dart';
-import 'package:Adte/widgets/title_view.dart';
 import 'package:Adte/models/app_theme.dart';
 import 'package:Adte/widgets/water_view.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +54,7 @@ Future<Article> fetchArticle() async {
     const int count = 9;
 
     listViews.add(
-      TitleView(
+      ComponentTitle(
         titleTxt: 'Dashboard',
         subTxt: 'more',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
@@ -76,7 +76,7 @@ Future<Article> fetchArticle() async {
     );
 
     listViews.add(
-      TitleView(
+      ComponentTitle(
         titleTxt: 'Handmade stuffs',
         subTxt: 'Today',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
@@ -98,7 +98,7 @@ Future<Article> fetchArticle() async {
     );
 
     listViews.add(
-      TitleView(
+      ComponentTitle(
         titleTxt: 'Water',
         subTxt: 'Aqua SmartBottle',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class ArticleCardTheme {
   ArticleCardTheme._();
-  
+
   static articleCardPadding(BuildContext context) {
     return EdgeInsets.only(
         left: MediaQuery.of(context).size.width * 0.03,
@@ -22,4 +22,11 @@ class ArticleCardTheme {
       color: AppTheme.grey.withOpacity(0.2),
       offset: Offset(1.1, 1.1),
       blurRadius: 10.0);
+
+  static const TextStyle titleTextStyle = TextStyle(
+      fontFamily: AppTheme.fontName,
+      fontWeight: FontWeight.w500,
+      fontSize: 18,
+      letterSpacing: -0.1,
+      color: AppTheme.nearlyDarkBlue);
 }

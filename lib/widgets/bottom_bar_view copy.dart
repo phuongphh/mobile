@@ -68,7 +68,7 @@ class _BottomBarViewState extends State<BottomBarView>
                                         widget.tabIconsList[0]);
                                     widget.changeIndex(0);
                                   }),
-                            ),
+                            ),   
                             Expanded(
                               child: TabIcons(
                                   tabIconData: widget.tabIconsList[1],

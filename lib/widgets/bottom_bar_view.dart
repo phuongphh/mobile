@@ -109,7 +109,7 @@ class _BottomBarViewState extends State<BottomBarView>
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).padding.bottom - 10,
+                      height: MediaQuery.of(context).padding.bottom,
                     )
                   ],
                 ),

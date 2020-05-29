@@ -33,105 +33,71 @@ class ArticleCard extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Padding(
-                      padding:
-                          const EdgeInsets.only(left: 8, right: 8, top: 8),
+                      padding: const EdgeInsets.only(
+                          left: 8, right: 8, top: 8, bottom: 8),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(
-                                left: 4, right: 4, bottom: 8),
+                                left: 4, right: 4, top: 4, bottom: 4),
                             child: Text(
                               article.description,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: AppTheme.fontName,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 18,
-                                  letterSpacing: -0.1,
-                                  color: AppTheme.nearlyDarkBlue),
+                              textAlign: TextAlign.left,
+                              maxLines: 1,
+                              style: ArticleCardTheme.titleTextStyle,
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 4, bottom: 3),
-                                    child: Text(
-                                      article.content,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontFamily: AppTheme.fontName,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 12,
-                                        color: AppTheme.darkText
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: <Widget>[
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Icon(
-                                        Icons.access_time,
-                                        color: AppTheme.grey.withOpacity(0.5),
-                                        size: 16,
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 4.0),
-                                        child: Text(
-                                          'Today 8:26 AM',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: AppTheme.fontName,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 14,
-                                            letterSpacing: 0.0,
-                                            color:
-                                                AppTheme.grey.withOpacity(0.5),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 4, bottom: 14),
-                                    child: Text(
-                                      'InBody SmartScale',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontFamily: AppTheme.fontName,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 12,
-                                        letterSpacing: 0.0,
-                                        color: AppTheme.nearlyDarkBlue,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          )
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
-                          left: 24, right: 24, top: 8, bottom: 8),
+                      padding: const EdgeInsets.only(left: 8, right: 16),
+                      child: Container(
+                        height: 2,
+                        decoration: BoxDecoration(
+                          color: AppTheme.background,
+                          borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                            child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 12, right: 12, top: 12, bottom: 12),
+                                child: Container(
+                                  child: Text(
+                                    article.content,
+                                    style: TextStyle(
+                                        fontFamily: AppTheme.fontName,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                        color: AppTheme.darkText),
+                                  ),
+                                ))),
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                left: 2, right: 2, top: 2, bottom: 2),
+                            child: Container(
+                                width: 100.0,
+                                height: 100.0,
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                    article.content,
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontFamily: AppTheme.fontName,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                        color: AppTheme.darkText),
+                                  ),
+                                ))),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8, right: 16),
                       child: Container(
                         height: 2,
                         decoration: BoxDecoration(
@@ -142,93 +108,24 @@ class ArticleCard extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                          left: 24, right: 24, top: 8, bottom: 16),
-                      child: Row(
+                          left: 8, right: 8, top: 8, bottom: 8),
+                      child: Column(
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Expanded(
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.all(Radius.circular(60.0)),
-                              //child: article.images;
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 4, right: 4, top: 4, bottom: 4),
+                            child: Text(
+                              'footer',
+                              textAlign: TextAlign.left,
+                              maxLines: 1,
+                              style: ArticleCardTheme.titleTextStyle,
                             ),
                           ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(
-                                      '27.3 BMI',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontFamily: AppTheme.fontName,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16,
-                                        letterSpacing: -0.2,
-                                        color: AppTheme.darkText,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 6),
-                                      child: Text(
-                                        'Overweight',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontFamily: AppTheme.fontName,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12,
-                                          color: AppTheme.grey.withOpacity(0.5),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: <Widget>[
-                                    Text(
-                                      '20%',
-                                      style: TextStyle(
-                                        fontFamily: AppTheme.fontName,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16,
-                                        letterSpacing: -0.2,
-                                        color: AppTheme.darkText,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 6),
-                                      child: Text(
-                                        'Body fat',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontFamily: AppTheme.fontName,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12,
-                                          color: AppTheme.grey.withOpacity(0.5),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
