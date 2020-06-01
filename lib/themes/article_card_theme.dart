@@ -29,4 +29,30 @@ class ArticleCardTheme {
       fontSize: 18,
       letterSpacing: -0.1,
       color: AppTheme.nearlyDarkBlue);
+
+  static const TextStyle contentTextStyle = TextStyle(
+      fontFamily: AppTheme.fontName,
+      fontWeight: FontWeight.w600,
+      fontSize: 12,
+      color: AppTheme.darkText);
+
+  static TextStyle dateTextStyle = TextStyle(
+      fontFamily: AppTheme.fontName,
+      fontWeight: FontWeight.w500,
+      fontSize: 14,
+      letterSpacing: 0.0,
+      color: AppTheme.grey.withOpacity(0.5));
+
+  static TextStyle footerTextStyle = TextStyle(
+      fontFamily: AppTheme.fontName,
+      fontWeight: FontWeight.w500,
+      fontSize: 16,
+      letterSpacing: -1,
+      color: AppTheme.darkText);
+
+  static const Icon footerStarIcon = Icon(
+    Icons.star,
+    color: AppTheme.nearlyDarkBlue,
+    size: 16,
+  );
 }

@@ -272,7 +272,7 @@ class Dashboard extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            'posts left',
+                                            'posts total',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily: AppTheme.fontName,

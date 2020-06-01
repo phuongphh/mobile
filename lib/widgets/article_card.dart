@@ -1,7 +1,9 @@
+import 'package:Adte/models/app_const.dart';
 import 'package:Adte/models/app_theme.dart';
 import 'package:Adte/themes/article_card_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:Adte/models/article.dart';
+import 'package:intl/intl.dart';
 
 class ArticleCard extends StatelessWidget {
   final AnimationController animationController;
@@ -31,15 +33,15 @@ class ArticleCard extends StatelessWidget {
                   boxShadow: <BoxShadow>[ArticleCardTheme.articleCardBoxShadow],
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(
-                          left: 8, right: 8, top: 8, bottom: 8),
+                      padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(
-                                left: 4, right: 4, top: 4, bottom: 4),
+                            padding: const EdgeInsets.all(4),
                             child: Text(
                               article.description,
                               textAlign: TextAlign.left,
@@ -47,65 +49,67 @@ class ArticleCard extends StatelessWidget {
                               style: ArticleCardTheme.titleTextStyle,
                             ),
                           ),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                    padding: const EdgeInsets.all(4),
+                                    child: Icon(
+                                      Icons.access_time,
+                                      color: AppTheme.grey.withOpacity(0.5),
+                                      size: 16,
+                                    )),
+                                Padding(
+                                    padding: const EdgeInsets.all(4),
+                                    child: Text(
+                                      _getDateTime(article.createdAt),
+                                      textAlign: TextAlign.left,
+                                      style: ArticleCardTheme.dateTextStyle,
+                                    ))
+                              ])
                         ],
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 8, right: 16),
-                    //   child: Container(
-                    //     height: 2,
-                    //     decoration: BoxDecoration(
-                    //       color: AppTheme.background,
-                    //       borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                    //     ),
-                    //   ),
-                    // ),
                     Row(
                       children: <Widget>[
                         Expanded(
                             child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 12, right: 12, top: 12, bottom: 12),
+                                padding: const EdgeInsets.all(12),
                                 child: Container(
                                   child: Text(
                                     article.content,
-                                    style: TextStyle(
-                                        fontFamily: AppTheme.fontName,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 12,
-                                        color: AppTheme.darkText),
+                                    style: ArticleCardTheme.contentTextStyle,
                                   ),
                                 ))),
                         _getPrimaryPhoto(article.photos)
                       ],
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 8, right: 16),
-                    //   child: Container(
-                    //     height: 2,
-                    //     decoration: BoxDecoration(
-                    //       color: AppTheme.background,
-                    //       borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                    //     ),
-                    //   ),
-                    // ),
                     Padding(
-                      padding: const EdgeInsets.only(
-                          left: 8, right: 8, top: 8, bottom: 8),
-                      child: Column(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // crossAxisAlignment: CrossAxisAlignment.start,
+                      padding: const EdgeInsets.all(8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(
-                                left: 4, right: 4, top: 4, bottom: 4),
-                            child: Text(
-                              'footer',
-                              textAlign: TextAlign.left,
-                              maxLines: 1,
-                              style: ArticleCardTheme.titleTextStyle,
+                              padding: const EdgeInsets.only(
+                                  left: 4, right: 4, top: 4, bottom: 4),
+                              child: Icon(
+                                Icons.favorite_border,
+                                color: AppTheme.nearlyDarkBlue,
+                                size: 16,
+                              )),
+                          Row(children: <Widget>[
+                            Text(
+                              '${5}',
+                              style: ArticleCardTheme.footerTextStyle,
                             ),
-                          ),
+                            ArticleCardTheme.footerStarIcon,
+                          ]),
+                          Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 4, right: 4, top: 4, bottom: 4),
+                              child:
+                                  _getPrice(article.price, article.category)),
                         ],
                       ),
                     ),
@@ -117,6 +121,29 @@ class ArticleCard extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+Widget _getPrice(int price, Category category) {
+  if (price != null) {
+    if (category.name == 'Service') {
+      return Text(
+          NumberFormat.currency(locale: "vi", symbol: 'đ', decimalDigits: 0)
+                  .format(price) +
+              '/1h',
+          textAlign: TextAlign.left,
+          maxLines: 1,
+          style: ArticleCardTheme.footerTextStyle);
+    } else {
+      return Text(
+          NumberFormat.currency(locale: "vi", symbol: 'đ', decimalDigits: 0)
+              .format(price),
+          textAlign: TextAlign.left,
+          maxLines: 1,
+          style: ArticleCardTheme.footerTextStyle);
+    }
+  } else {
+    return SizedBox.shrink();
   }
 }
 
@@ -136,17 +163,23 @@ Widget _getPrimaryPhoto(List<Photo> photos) {
                     blurRadius: 8),
               ],
             ),
-
-            // child: ClipRRect(
-            //     borderRadius: const BorderRadius.all(Radius.circular(60.0)),
-            //     child: Image.network('http://18.141.176.197:1337' + photos.elementAt(0).url)))
             child: CircleAvatar(
               radius: 60,
               backgroundImage: NetworkImage(
-                  'http://18.141.176.197:1337' + photos.elementAt(0).url),
+                  SERVER_URL + photos.elementAt(0).formats.small.url),
               backgroundColor: Colors.transparent,
             )));
   } else {
     return SizedBox.shrink();
   }
+}
+
+String _getDateTime(DateTime createAt) {
+  return createAt.day.toString() +
+      '/' +
+      createAt.month.toString() +
+      ' - ' +
+      (createAt.hour + 7).toString() +
+      ':' +
+      createAt.minute.toString();
 }
