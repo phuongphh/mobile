@@ -1,4 +1,5 @@
 import 'package:Adte/hotel_booking/hotel_home_screen.dart';
+import 'package:Adte/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:Adte/models/tabIcon_data.dart';
@@ -135,7 +136,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
                       return;
                     }
                     setState(() {
-                      tabBody = HotelHomeScreen();
+                      tabBody = LoginScreen();
                     });
                   });
                 }

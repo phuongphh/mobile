@@ -3,6 +3,7 @@
 //     final article = articleFromJson(jsonString);
 
 import 'dart:convert';
+import 'package:Adte/models/user.dart';
 
 List<Article> articleFromJson(String str) => List<Article>.from(json.decode(str).map((x) => Article.fromJson(x)));
 
@@ -21,7 +22,7 @@ class Article {
     int price;
     int promotion;
     String tag;
-    Author author;
+    User author;
     Category category;
     Location location;
     String articleId;
@@ -58,7 +59,7 @@ class Article {
         price: json["price"] == null ? null : json["price"],
         promotion: json["promotion"] == null ? null : json["promotion"],
         tag: json["tag"] == null ? null : json["tag"],
-        author: json["author"] == null ? null : Author.fromJson(json["author"]),
+        author: json["author"] == null ? null : User.fromJson(json["author"]),
         category: json["category"] == null ? null : Category.fromJson(json["category"]),
         location: json["location"] == null ? null : Location.fromJson(json["location"]),
         articleId: json["id"],
@@ -81,62 +82,6 @@ class Article {
         "category": category == null ? null : category.toJson(),
         "location": location == null ? null : location.toJson(),
         "id": articleId,
-    };
-}
-
-class Author {
-    bool confirmed;
-    bool blocked;
-    String id;
-    String username;
-    String email;
-    String provider;
-    DateTime createdAt;
-    DateTime updatedAt;
-    int v;
-    String role;
-    String authorId;
-
-    Author({
-        this.confirmed,
-        this.blocked,
-        this.id,
-        this.username,
-        this.email,
-        this.provider,
-        this.createdAt,
-        this.updatedAt,
-        this.v,
-        this.role,
-        this.authorId,
-    });
-
-    factory Author.fromJson(Map<String, dynamic> json) => Author(
-        confirmed: json["confirmed"],
-        blocked: json["blocked"],
-        id: json["_id"],
-        username: json["username"],
-        email: json["email"],
-        provider: json["provider"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
-        role: json["role"],
-        authorId: json["id"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "confirmed": confirmed,
-        "blocked": blocked,
-        "_id": id,
-        "username": username,
-        "email": email,
-        "provider": provider,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "__v": v,
-        "role": role,
-        "id": authorId,
     };
 }
 

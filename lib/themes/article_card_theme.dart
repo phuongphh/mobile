@@ -16,7 +16,7 @@ class ArticleCardTheme {
       topLeft: Radius.circular(8.0),
       bottomLeft: Radius.circular(8.0),
       bottomRight: Radius.circular(8.0),
-      topRight: Radius.circular(68.0));
+      topRight: Radius.circular(8.0));
 
   static BoxShadow articleCardBoxShadow = BoxShadow(
       color: AppTheme.grey.withOpacity(0.2),
@@ -28,12 +28,12 @@ class ArticleCardTheme {
       fontWeight: FontWeight.w500,
       fontSize: 18,
       letterSpacing: -0.1,
-      color: AppTheme.nearlyDarkBlue);
+      color: AppTheme.nearlyBlack);
 
   static const TextStyle contentTextStyle = TextStyle(
       fontFamily: AppTheme.fontName,
-      fontWeight: FontWeight.w600,
-      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      fontSize: 14,
       color: AppTheme.darkText);
 
   static TextStyle dateTextStyle = TextStyle(
@@ -46,13 +46,13 @@ class ArticleCardTheme {
   static TextStyle footerTextStyle = TextStyle(
       fontFamily: AppTheme.fontName,
       fontWeight: FontWeight.w500,
-      fontSize: 16,
+      fontSize: 14,
       letterSpacing: -1,
-      color: AppTheme.darkText);
+      color: AppTheme.nearlyDarkBlue);
 
   static const Icon footerStarIcon = Icon(
     Icons.star,
     color: AppTheme.nearlyDarkBlue,
-    size: 16,
+    size: 14,
   );
 }

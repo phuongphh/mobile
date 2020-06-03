@@ -47,6 +47,7 @@ class ArticleCard extends StatelessWidget {
                               textAlign: TextAlign.left,
                               maxLines: 1,
                               style: ArticleCardTheme.titleTextStyle,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           Row(
@@ -71,15 +72,19 @@ class ArticleCard extends StatelessWidget {
                       ),
                     ),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Expanded(
                             child: Padding(
                                 padding: const EdgeInsets.all(12),
                                 child: Container(
-                                  child: Text(
+                                  child: Text( 
                                     article.content,
                                     style: ArticleCardTheme.contentTextStyle,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 6,
                                   ),
+                                  
                                 ))),
                         _getPrimaryPhoto(article.photos)
                       ],
@@ -99,10 +104,7 @@ class ArticleCard extends StatelessWidget {
                                 size: 16,
                               )),
                           Row(children: <Widget>[
-                            Text(
-                              '${5}',
-                              style: ArticleCardTheme.footerTextStyle,
-                            ),
+                            _getRate(article.author.rated),
                             ArticleCardTheme.footerStarIcon,
                           ]),
                           Padding(
@@ -121,6 +123,17 @@ class ArticleCard extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+Widget _getRate(double rating) {
+  if (rating != null) {
+    return Text(
+      '$rating',
+      style: ArticleCardTheme.footerTextStyle,
+    );
+  } else {
+    return Text('0', style: ArticleCardTheme.footerTextStyle);
   }
 }
 
@@ -143,17 +156,17 @@ Widget _getPrice(int price, Category category) {
           style: ArticleCardTheme.footerTextStyle);
     }
   } else {
-    return SizedBox.shrink();
+    return Text('here');
   }
 }
 
 Widget _getPrimaryPhoto(List<Photo> photos) {
   if (photos.isNotEmpty) {
     return Padding(
-        padding: const EdgeInsets.only(left: 2, right: 2, top: 2, bottom: 2),
+        padding: const EdgeInsets.all(8),
         child: Container(
-            width: 120.0,
-            height: 120.0,
+            width: 100.0,
+            height: 100.0,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               boxShadow: <BoxShadow>[
