@@ -1,4 +1,5 @@
 import 'package:Adte/hotel_booking/hotel_home_screen.dart';
+import 'package:Adte/models/app_const.dart';
 import 'package:Adte/screens/login_screen.dart';
 import 'package:Adte/screens/post_article_screen.dart';
 import 'package:flutter/material.dart';
@@ -156,7 +157,7 @@ void moveTo(BuildContext context) {
   Navigator.push<dynamic>(
     context,
     MaterialPageRoute<dynamic>(
-      builder: (BuildContext context) => LoginScreen(),
+      builder: (BuildContext context) => LoginScreen(reason: POST_ARTICLE_LOGIN),
     ),
   );
 }

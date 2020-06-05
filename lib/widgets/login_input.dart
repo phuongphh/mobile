@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
-class LoginInput extends StatelessWidget {
+class LoginInput extends StatefulWidget {
+  LoginInput({Key key, this.topRight, this.bottomRight, this.textController}) : super(key: key);
   final double topRight;
   final double bottomRight;
+  final TextEditingController textController;
+  
+  @override
+  _LoginInputState createState() => _LoginInputState();
+}
 
-  LoginInput(this.topRight, this.bottomRight);
-
+class _LoginInputState extends State<LoginInput> {  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,8 +22,8 @@ class LoginInput extends StatelessWidget {
           color: Colors.white,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(bottomRight),
-                  topRight: Radius.circular(topRight))),
+                  bottomRight: Radius.circular(widget.bottomRight),
+                  topRight: Radius.circular(widget.topRight))),
           child: Padding(
             padding: EdgeInsets.only(left: 40, right: 20, top: 10, bottom: 10),
             child: TextField(
@@ -26,6 +31,7 @@ class LoginInput extends StatelessWidget {
                   border: InputBorder.none,
                   hintText: "someone@example.com",
                   hintStyle: TextStyle(color: Color(0xFFE1E1E1), fontSize: 14)),
+              controller: widget.textController,
             ),
           ),
         ),

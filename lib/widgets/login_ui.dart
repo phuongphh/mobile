@@ -2,7 +2,18 @@ import 'package:Adte/models/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:Adte/widgets/login_input.dart';
 
-class LoginUi extends StatelessWidget {
+class LoginUi extends StatefulWidget {
+  LoginUi({Key key, this.reason}) : super(key: key);
+  final String reason;
+
+  @override
+  _LoginUiState createState() => _LoginUiState();
+}
+
+class _LoginUiState extends State<LoginUi> {
+  final textController = TextEditingController();
+  String warning = "valid!";
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,6 +31,14 @@ class LoginUi extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 40, bottom: 10),
                   child: Text(
+                    widget.reason,
+                    style:
+                        TextStyle(fontSize: 16, color: AppTheme.nearlyDarkBlue),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 40, bottom: 10),
+                  child: Text(
                     "Email",
                     style: TextStyle(fontSize: 16, color: Color(0xFF999A9A)),
                   ),
@@ -27,7 +46,10 @@ class LoginUi extends StatelessWidget {
                 Stack(
                   alignment: Alignment.bottomRight,
                   children: <Widget>[
-                    LoginInput(30.0, 0.0),
+                    LoginInput(
+                        topRight: 30.0,
+                        bottomRight: 0.0,
+                        textController: textController),
                     Padding(
                         padding: EdgeInsets.only(right: 50),
                         child: Row(
@@ -55,7 +77,16 @@ class LoginUi extends StatelessWidget {
                                   color: Colors.transparent,
                                   child: InkWell(
                                       borderRadius: BorderRadius.circular(40),
-                                      onTap: () {},
+                                      onTap: () {
+                                        if (_validateEmail(
+                                            textController.text)) {
+                                          warning = "valid !";
+                                        } else {
+                                          setState(() {
+                                            warning = "email invalid !";
+                                          });
+                                        }
+                                      },
                                       child: ImageIcon(
                                         AssetImage(
                                             "assets/images/ic_forward.png"),
@@ -69,6 +100,14 @@ class LoginUi extends StatelessWidget {
                 ),
               ],
             ),
+            if (warning != "valid!")
+                Padding(
+                  padding: EdgeInsets.only(left: 40, bottom: 10),
+                  child: Text(
+                    warning,
+                    style: TextStyle(fontSize: 16, color: AppTheme.warningRed),
+                  ),
+                ),
             Padding(
               padding: EdgeInsets.only(bottom: 50),
             ),
@@ -132,3 +171,10 @@ const List<Color> signUpGradients = [
   Color(0xFFFF9945),
   Color(0xFFFc6076),
 ];
+
+bool _validateEmail(String email) {
+  Pattern pattern =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  RegExp regex = new RegExp(pattern);
+  return (!regex.hasMatch(email)) ? false : true;
+}

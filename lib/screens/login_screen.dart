@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:Adte/widgets/login_background.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key, this.title}) : super(key: key);
-  final String title;
+  LoginScreen({Key key, this.reason}) : super(key: key);
+  final String reason;
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Stack(
               children: <Widget>[
                 LoginBackground(),
-                LoginUi(),
+                LoginUi(reason: widget.reason),
                 Padding(
                   padding:
                       EdgeInsets.only(top: MediaQuery.of(context).padding.top),
