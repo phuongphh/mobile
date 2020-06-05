@@ -1,5 +1,4 @@
 import 'package:Adte/models/app_theme.dart';
-import 'package:Adte/models/hex_color.dart';
 import 'package:flutter/material.dart';
 import 'package:Adte/widgets/login_input.dart';
 
@@ -39,25 +38,31 @@ class LoginUi extends StatelessWidget {
                               child: Text(
                                 'Enter your email id to continue...',
                                 textAlign: TextAlign.end,
-                                style: TextStyle(color: Color(0xFFA0A0A0),
-                                fontSize: 12),
+                                style: TextStyle(
+                                    color: Color(0xFFA0A0A0), fontSize: 12),
                               ),
                             )),
                             Container(
-                              padding: EdgeInsets.all(10),
-                              decoration: ShapeDecoration(
-                                shape: CircleBorder(),
-                                gradient: LinearGradient(
-                                    colors: signInGradients,
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight),
-                              ),
-                              child: ImageIcon(
-                                AssetImage("assets/images/ic_forward.png"),
-                                size: 40,
-                                color: Colors.white,
-                              ),
-                            ),
+                                padding: EdgeInsets.all(10),
+                                decoration: ShapeDecoration(
+                                  shape: CircleBorder(),
+                                  gradient: LinearGradient(
+                                      colors: signInGradients,
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight),
+                                ),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                      borderRadius: BorderRadius.circular(40),
+                                      onTap: () {},
+                                      child: ImageIcon(
+                                        AssetImage(
+                                            "assets/images/ic_forward.png"),
+                                        size: 40,
+                                        color: Colors.white,
+                                      )),
+                                )),
                           ],
                         ))
                   ],
@@ -107,7 +112,7 @@ Widget roundedRectButton(
             child: Padding(
                 padding: EdgeInsets.only(right: 10),
                 child: ImageIcon(
-                  AssetImage("assets/ic_forward.png"),
+                  AssetImage("assets/images/ic_forward.png"),
                   size: 30,
                   color: Colors.white,
                 )),

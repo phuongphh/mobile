@@ -1,5 +1,6 @@
 import 'package:Adte/hotel_booking/hotel_home_screen.dart';
 import 'package:Adte/screens/login_screen.dart';
+import 'package:Adte/screens/post_article_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:Adte/models/tabIcon_data.dart';
@@ -11,8 +12,8 @@ import 'package:Adte/screens/all_post_screen.dart';
 import 'package:Adte/design_course/home_design_course.dart';
 
 class AppHomeScreen extends StatefulWidget {
-  const AppHomeScreen ({Key key}) : super (key: key);
-  
+  const AppHomeScreen({Key key}) : super(key: key);
+
   @override
   _AppHomeScreenState createState() => _AppHomeScreenState();
 }
@@ -61,7 +62,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
               return Stack(
                 children: <Widget>[
                   tabBody,
-                  bottomBar(),
+                  bottomBar(context),
                 ],
               );
             }
@@ -76,7 +77,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
     return true;
   }
 
-  Widget bottomBar() {
+  Widget bottomBar(BuildContext context) {
     return Column(
       children: <Widget>[
         const Expanded(
@@ -84,7 +85,9 @@ class _AppHomeScreenState extends State<AppHomeScreen>
         ),
         BottomBarView(
           tabIconsList: tabIconsList,
-          addClick: () {},
+          addClick: () {
+            moveTo(context);
+          },
           changeIndex: (int index) {
             switch (index) {
               case 0:
@@ -136,7 +139,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
                       return;
                     }
                     setState(() {
-                      tabBody = LoginScreen();
+                      tabBody = HotelHomeScreen();
                     });
                   });
                 }
@@ -147,4 +150,13 @@ class _AppHomeScreenState extends State<AppHomeScreen>
       ],
     );
   }
+}
+
+void moveTo(BuildContext context) {
+  Navigator.push<dynamic>(
+    context,
+    MaterialPageRoute<dynamic>(
+      builder: (BuildContext context) => LoginScreen(),
+    ),
+  );
 }
