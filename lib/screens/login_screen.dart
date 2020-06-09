@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:Adte/widgets/login_background.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key, this.reason}) : super(key: key);
+  const LoginScreen({Key key, this.reason}) : super(key: key);
   final String reason;
 
   @override
@@ -12,6 +12,16 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  LoginBackground loginBackground;
+  LoginUi loginUi;
+  
+  @override
+  void initState() {
+    loginBackground = const LoginBackground();
+    loginUi = LoginUi(reason: widget.reason);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
             },
             child: Stack(
               children: <Widget>[
-                LoginBackground(),
-                LoginUi(reason: widget.reason),
+                loginBackground,
+                loginUi,
                 Padding(
                   padding:
                       EdgeInsets.only(top: MediaQuery.of(context).padding.top),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class LoginInput extends StatefulWidget {
-  LoginInput({Key key, this.topRight, this.bottomRight, this.textController}) : super(key: key);
+  LoginInput({Key key, this.topRight, this.bottomRight, this.textController, this.hint, this.obscure}) : super(key: key);
   final double topRight;
   final double bottomRight;
   final TextEditingController textController;
+  final String hint;
+  final bool obscure;
   
   @override
   _LoginInputState createState() => _LoginInputState();
@@ -29,8 +31,9 @@ class _LoginInputState extends State<LoginInput> {
             child: TextField(
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: "someone@example.com",
+                  hintText: widget.hint,
                   hintStyle: TextStyle(color: Color(0xFFE1E1E1), fontSize: 14)),
+                  obscureText: widget.obscure,
               controller: widget.textController,
             ),
           ),

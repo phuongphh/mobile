@@ -13,7 +13,7 @@ class NavigationHomeScreen extends StatefulWidget {
 }
 
 class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
-  Text screenTitle;
+  // Text screenTitle;
   Widget screenView;
   DrawerIndex drawerIndex;
 

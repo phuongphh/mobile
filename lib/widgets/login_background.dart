@@ -2,6 +2,8 @@ import 'package:Adte/models/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class LoginBackground extends StatelessWidget {
+  const LoginBackground ({Key key}) : super (key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +103,7 @@ class CircleYellow extends StatelessWidget {
     return Transform.translate(
       offset: Offset(0.0, 210.0),
       child: Material(
-        color: Colors.yellow,
+        color: Colors.orange,
         child: Padding(padding: EdgeInsets.all(140)),
         shape: CircleBorder(side: BorderSide(color: Colors.white, width: 15.0)),
       ),

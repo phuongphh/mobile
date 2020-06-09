@@ -14,8 +14,8 @@ import 'dart:async';
 
 class AllPostScreen extends StatefulWidget {
   const AllPostScreen({Key key, this.animationController}) : super(key: key);
-
   final AnimationController animationController;
+  
   @override
   _AllPostScreenState createState() => _AllPostScreenState();
 }
@@ -31,7 +31,6 @@ class _AllPostScreenState extends State<AllPostScreen>
 
   @override
   void initState() {
-    // addAllListData();
     super.initState();
     futureArticles = fetchArticles();
     futureArticles.then((value) {

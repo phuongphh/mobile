@@ -1,9 +1,17 @@
+import 'dart:convert';
+
+import 'package:Adte/models/app_const.dart';
 import 'package:Adte/models/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:Adte/widgets/login_input.dart';
 
+import 'package:http/http.dart' as http;
+import 'dart:async';
+
 class LoginUi extends StatefulWidget {
-  LoginUi({Key key, this.reason}) : super(key: key);
+  const LoginUi({Key key, this.animationController, this.reason})
+      : super(key: key);
+  final AnimationController animationController;
   final String reason;
 
   @override
@@ -12,7 +20,144 @@ class LoginUi extends StatefulWidget {
 
 class _LoginUiState extends State<LoginUi> {
   final textController = TextEditingController();
-  String warning = "valid!";
+
+  List<Widget> listViews = <Widget>[];
+  String title;
+  bool warning = false;
+  bool obscure = false;
+  String warningMessage;
+  String guidance = 'Enter your email id to continue... !';
+  String hint;
+  LoginSteps loginStep;
+  String currentEmail;
+  String currentPassword;
+
+  @override
+  void initState() {
+    loginStep = LoginSteps.InputEmail;
+    title = 'Email';
+    hint = 'someone@example.com';
+
+    super.initState();
+    addViews(loginStep);
+  }
+
+  @override
+  void dispose() {
+    textController.dispose();
+    listViews.clear();
+    super.dispose();
+  }
+
+  void addViews(LoginSteps loginStep) {
+    listViews.clear();
+    listViews.add(
+      Padding(
+        padding: EdgeInsets.only(left: 40, bottom: 10),
+        child: Text(
+          widget.reason,
+          style: TextStyle(fontSize: 16, color: AppTheme.nearlyDarkBlue),
+        ),
+      ),
+    );
+    listViews.add(
+      Padding(
+        padding: EdgeInsets.only(left: 40, bottom: 10),
+        child: Text(
+          title,
+          style: TextStyle(fontSize: 16, color: Color(0xFF999A9A)),
+        ),
+      ),
+    );
+
+    listViews.add(
+      Stack(
+        alignment: Alignment.bottomRight,
+        children: <Widget>[
+          LoginInput(
+            topRight: 30.0,
+            bottomRight: 0.0,
+            textController: textController,
+            hint: hint,
+            obscure: obscure,
+          ),
+          Padding(
+              padding: EdgeInsets.only(right: 50),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                      child: Padding(
+                    padding: EdgeInsets.only(top: 40),
+                    child: Text(
+                      guidance,
+                      textAlign: TextAlign.end,
+                      style: TextStyle(color: Color(0xFFA0A0A0), fontSize: 12),
+                    ),
+                  )),
+                  Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: ShapeDecoration(
+                        shape: CircleBorder(),
+                        gradient: LinearGradient(
+                            colors: signInGradients,
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight),
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                            borderRadius: BorderRadius.circular(40),
+                            onTap: () {
+                              signInSubmission(loginStep);
+                            },
+                            child: ImageIcon(
+                              AssetImage("assets/images/ic_forward.png"),
+                              size: 40,
+                              color: Colors.white,
+                            )),
+                      )),
+                ],
+              ))
+        ],
+      ),
+    );
+
+    if (warning) {
+      listViews.add(
+        Padding(
+          padding: EdgeInsets.only(left: 40, bottom: 10),
+          child: Text(
+            warningMessage,
+            style: TextStyle(fontSize: 16, color: AppTheme.warningRed),
+          ),
+        ),
+      );
+    }
+
+    listViews.add(
+      Padding(
+        padding: EdgeInsets.only(bottom: 50),
+      ),
+    );
+
+    if (loginStep == LoginSteps.InputEmail) {
+      listViews.add(Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(left: 40, bottom: 10),
+            ),
+            roundedRectButton("Let's get Started", signInGradients, false),
+            roundedRectButton("Create an Account", signUpGradients, false),
+          ]));
+    } else if (loginStep == LoginSteps.InputPassword) {
+      listViews.add(Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            roundedRectButton("Let's get Started", signInGradients, false),
+          ]));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,98 +169,73 @@ class _LoginUiState extends State<LoginUi> {
         ),
         Column(
           children: <Widget>[
-            ///holds email header and inputField
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(left: 40, bottom: 10),
-                  child: Text(
-                    widget.reason,
-                    style:
-                        TextStyle(fontSize: 16, color: AppTheme.nearlyDarkBlue),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 40, bottom: 10),
-                  child: Text(
-                    "Email",
-                    style: TextStyle(fontSize: 16, color: Color(0xFF999A9A)),
-                  ),
-                ),
-                Stack(
-                  alignment: Alignment.bottomRight,
-                  children: <Widget>[
-                    LoginInput(
-                        topRight: 30.0,
-                        bottomRight: 0.0,
-                        textController: textController),
-                    Padding(
-                        padding: EdgeInsets.only(right: 50),
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(
-                                child: Padding(
-                              padding: EdgeInsets.only(top: 40),
-                              child: Text(
-                                'Enter your email id to continue...',
-                                textAlign: TextAlign.end,
-                                style: TextStyle(
-                                    color: Color(0xFFA0A0A0), fontSize: 12),
-                              ),
-                            )),
-                            Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: ShapeDecoration(
-                                  shape: CircleBorder(),
-                                  gradient: LinearGradient(
-                                      colors: signInGradients,
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight),
-                                ),
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                      borderRadius: BorderRadius.circular(40),
-                                      onTap: () {
-                                        if (_validateEmail(
-                                            textController.text)) {
-                                          warning = "valid !";
-                                        } else {
-                                          setState(() {
-                                            warning = "email invalid !";
-                                          });
-                                        }
-                                      },
-                                      child: ImageIcon(
-                                        AssetImage(
-                                            "assets/images/ic_forward.png"),
-                                        size: 40,
-                                        color: Colors.white,
-                                      )),
-                                )),
-                          ],
-                        ))
-                  ],
-                ),
-              ],
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: listViews,
             ),
-            if (warning != "valid!")
-                Padding(
-                  padding: EdgeInsets.only(left: 40, bottom: 10),
-                  child: Text(
-                    warning,
-                    style: TextStyle(fontSize: 16, color: AppTheme.warningRed),
-                  ),
-                ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 50),
-            ),
-            roundedRectButton("Let's get Started", signInGradients, false),
-            roundedRectButton("Create an Account", signUpGradients, false),
           ],
         )
       ],
+    );
+  }
+
+  void signInSubmission(LoginSteps loginStep) {
+    if (loginStep == LoginSteps.InputEmail) {
+      // email is valid
+      if (_validateEmail(textController.text)) {
+        setState(() {
+          print(loginStep);
+          currentEmail = textController.text;
+          title = 'Email | Password >>';
+          guidance = 'Enter your password ...';
+          textController.clear();
+          warning = false;
+          obscure = true;
+          loginStep = LoginSteps.InputPassword;
+          hint = 'your password';
+          addViews(loginStep);
+        });
+      } else {
+        setState(() {
+          warning = true;
+          warningMessage = "email invalid !";
+          addViews(loginStep);
+        });
+      }
+    } else if (loginStep == LoginSteps.InputPassword) {
+      print('here');
+      currentPassword = textController.text;
+      _validatePassword(currentEmail, currentPassword).then((value) {
+        if (value) {
+          _showDialog();
+          Navigator.pop(context);
+        } else {
+          print('wrong password !');
+        }
+      });
+    }
+  }
+
+  void _showDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Success !"),
+          content: new Text("You are logged in !"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -177,4 +297,23 @@ bool _validateEmail(String email) {
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
   RegExp regex = new RegExp(pattern);
   return (!regex.hasMatch(email)) ? false : true;
+}
+
+Future<bool> _validatePassword(String email, String password) async {
+  final response = await http.post('$SERVER_URL/auth/local',
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'identifier': email,
+        'password': password,
+      }));
+  print(response.body);
+  return (response.statusCode == 200);
+}
+
+enum LoginSteps {
+  InputEmail,
+  InputPassword,
+  VerifyPassword,
 }
