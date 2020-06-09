@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:Adte/main.dart';
 import 'package:Adte/models/app_const.dart';
 import 'package:Adte/models/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,8 @@ class LoginUi extends StatefulWidget {
 
 class _LoginUiState extends State<LoginUi> {
   final textController = TextEditingController();
+  String userId;
+  String token;
 
   List<Widget> listViews = <Widget>[];
   String title;
@@ -141,15 +144,14 @@ class _LoginUiState extends State<LoginUi> {
     );
 
     if (loginStep == LoginSteps.InputEmail) {
-      listViews.add(Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(left: 40, bottom: 10),
-            ),
-            roundedRectButton("Let's get Started", signInGradients, false),
-            roundedRectButton("Create an Account", signUpGradients, false),
-          ]));
+      listViews.add(
+          Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(left: 40, bottom: 10),
+        ),
+        roundedRectButton("Let's get Started", signInGradients, false),
+        roundedRectButton("Create an Account", signUpGradients, false),
+      ]));
     } else if (loginStep == LoginSteps.InputPassword) {
       listViews.add(Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,13 +169,8 @@ class _LoginUiState extends State<LoginUi> {
           padding:
               EdgeInsets.only(top: MediaQuery.of(context).size.height / 2.3),
         ),
-        Column(
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: listViews,
-            ),
-          ],
+        Column (
+          children: listViews,
         )
       ],
     );
@@ -203,14 +200,18 @@ class _LoginUiState extends State<LoginUi> {
         });
       }
     } else if (loginStep == LoginSteps.InputPassword) {
-      print('here');
+      print(loginStep);
       currentPassword = textController.text;
       _validatePassword(currentEmail, currentPassword).then((value) {
         if (value) {
+          storage.write(key: "jwt", value: token);
+          storage.write(key: "userId", value: userId);
           _showDialog();
-          Navigator.pop(context);
         } else {
-          print('wrong password !');
+          warning = true;
+          warningMessage = 'wrong password';
+          loginStep = LoginSteps.ForgotPassword;
+          addViews(loginStep);
         }
       });
     }
@@ -231,12 +232,36 @@ class _LoginUiState extends State<LoginUi> {
               child: new Text("Close"),
               onPressed: () {
                 Navigator.of(context).pop();
+                Navigator.pop(context);
               },
             ),
           ],
         );
       },
     );
+  }
+
+  bool _validateEmail(String email) {
+    Pattern pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regex = new RegExp(pattern);
+    return (!regex.hasMatch(email)) ? false : true;
+  }
+
+  Future<bool> _validatePassword(String email, String password) async {
+    final response = await http.post('$SERVER_URL/auth/local',
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'identifier': email,
+          'password': password,
+        }));
+    token = json.decode(response.body)["jwt"];
+    userId = json.decode(response.body)["user"]["id"];
+    print(response.body);
+    print(userId);
+    return (response.statusCode == 200);
   }
 }
 
@@ -292,28 +317,9 @@ const List<Color> signUpGradients = [
   Color(0xFFFc6076),
 ];
 
-bool _validateEmail(String email) {
-  Pattern pattern =
-      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-  RegExp regex = new RegExp(pattern);
-  return (!regex.hasMatch(email)) ? false : true;
-}
-
-Future<bool> _validatePassword(String email, String password) async {
-  final response = await http.post('$SERVER_URL/auth/local',
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'identifier': email,
-        'password': password,
-      }));
-  print(response.body);
-  return (response.statusCode == 200);
-}
-
 enum LoginSteps {
   InputEmail,
   InputPassword,
-  VerifyPassword,
+  ForgotPassword,
+  CreateAccount,
 }
