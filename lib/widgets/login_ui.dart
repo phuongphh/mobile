@@ -202,10 +202,10 @@ class _LoginUiState extends State<LoginUi> {
     } else if (loginStep == LoginSteps.InputPassword) {
       print(loginStep);
       currentPassword = textController.text;
-      _validatePassword(currentEmail, currentPassword).then((value) {
+      _validatePassword(currentEmail, currentPassword).then((value) async {
         if (value) {
-          storage.write(key: "jwt", value: token);
-          storage.write(key: "userId", value: userId);
+          await storage.write(key: "jwt", value: token);
+          await storage.write(key: "userId", value: userId);
           _showDialog();
         } else {
           warning = true;

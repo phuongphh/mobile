@@ -1,6 +1,10 @@
+import 'dart:io';
+import 'dart:convert';
 import 'package:Adte/main.dart';
+import 'package:Adte/models/app_const.dart';
 import 'package:flutter/material.dart';
 import 'package:Adte/models/app_theme_bk.dart';
+import 'package:http/http.dart' as http;
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(
@@ -20,11 +24,18 @@ class HomeDrawer extends StatefulWidget {
 
 class _HomeDrawerState extends State<HomeDrawer> {
   List<DrawerList> drawerList;
+  String userId;
+  String token;
+  String avatarUrl;
+  Widget avatar;
+  String username;
 
   @override
   void initState() {
+    print('initState');
     setdDrawerListArray();
-    if (storage.read(key: "userId") != null) super.initState();
+    username = 'Noname';
+    super.initState();
   }
 
   void setdDrawerListArray() {
@@ -63,39 +74,72 @@ class _HomeDrawerState extends State<HomeDrawer> {
     ];
   }
 
-  Widget _getAvatar() {
-    if (storage.read(key: "userId") == null) {
+  Future<Widget> _getAvatar() async {
+    token = await storage.read(key: "jwt");
+    userId = await storage.read(key: "userId");
+    if (token == null) {
       return (ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(60.0)),
         child: Image.asset('assets/images/userImage.png'),
       ));
     } else {
+      final response = await http.get(
+        '$SERVER_URL/users/$userId',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+      avatarUrl = json.decode(response.body)["avatar"]["url"];
       return Padding(
           padding: const EdgeInsets.all(8),
-          // child: Container(
-          //     width: 100.0,
-          //     height: 100.0,
-          //     decoration: BoxDecoration(
-          //       shape: BoxShape.circle,
-          //       boxShadow: <BoxShadow>[
-          //         BoxShadow(
-          //             color: AppTheme.grey.withOpacity(0.6),
-          //             offset: const Offset(2.0, 4.0),
-          //             blurRadius: 8),
-          //       ],
-          //     ),
-          //     child: CircleAvatar(
-          //       radius: 60,
-          //       backgroundImage: NetworkImage(
-          //           SERVER_URL + photos.elementAt(0).formats.small.url),
-          //       backgroundColor: Colors.transparent,
-          //     )));
+          child: Container(
+              width: 100.0,
+              height: 100.0,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: AppTheme.grey.withOpacity(0.6),
+                      offset: const Offset(2.0, 4.0),
+                      blurRadius: 8),
+                ],
+              ),
+              child: CircleAvatar(
+                radius: 60,
+                backgroundImage: NetworkImage(SERVER_URL + avatarUrl),
+                backgroundColor: Colors.transparent,
+              )));
+    }
+  }
+
+  Future<String> _getUserName() async {
+    token = await storage.read(key: "jwt");
+    userId = await storage.read(key: "userId");
+    if (token == null) {
+      return 'Noname';
+    } else {
+      final response = await http.get(
+        '$SERVER_URL/users/$userId',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
       );
+      return json.decode(response.body)["username"];
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    _getAvatar().then((value) {
+      avatar = value;
+    });
+    _getUserName().then((value) {
+      username = value;
+    });
     return Scaffold(
       backgroundColor: AppTheme.notWhite.withOpacity(0.5),
       body: Column(
@@ -137,11 +181,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                     blurRadius: 8),
                               ],
                             ),
-                            child: ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(60.0)),
-                              child: Image.asset('assets/images/userImage.png'),
-                            ),
+                            child: avatar,
                           ),
                         ),
                       );
@@ -150,7 +190,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   Padding(
                     padding: const EdgeInsets.only(top: 8, left: 4),
                     child: Text(
-                      'Mr Phuong',
+                      username,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: AppTheme.grey,
