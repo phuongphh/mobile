@@ -11,6 +11,7 @@ import 'package:Adte/widgets/bottom_bar_view.dart';
 import 'package:Adte/models/app_theme.dart';
 import 'package:Adte/screens/all_post_screen.dart';
 import 'package:Adte/design_course/home_design_course.dart';
+import 'package:Adte/models/globals.dart' as globals;
 
 class AppHomeScreen extends StatefulWidget {
   const AppHomeScreen({Key key}) : super(key: key);
@@ -22,8 +23,9 @@ class AppHomeScreen extends StatefulWidget {
 class _AppHomeScreenState extends State<AppHomeScreen>
     with TickerProviderStateMixin {
   AnimationController animationController;
-
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
+  String token;
+  String userId;
 
   Widget tabBody = Container(
     color: AppTheme.background,
@@ -31,6 +33,8 @@ class _AppHomeScreenState extends State<AppHomeScreen>
 
   @override
   void initState() {
+    _getUserAuthenInfo.call();
+
     tabIconsList.forEach((TabIconData tab) {
       tab.isSelected = false;
     });
@@ -140,7 +144,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
                       return;
                     }
                     setState(() {
-                      tabBody = HotelHomeScreen();
+                      tabBody = DesignCourseHomeScreen();
                     });
                   });
                 }
@@ -151,13 +155,34 @@ class _AppHomeScreenState extends State<AppHomeScreen>
       ],
     );
   }
+
+  void _getUserAuthenInfo() async {
+    token = await globals.storage.read(key: "jwt");
+    userId = await globals.storage.read(key: "userId");
+    if (userId == null)
+      globals.isLoggedIn = false;
+    else
+      globals.isLoggedIn = true;
+
+    print('app_home_screen: $userId ${globals.isLoggedIn}');
+  }
 }
 
 void moveTo(BuildContext context) {
-  Navigator.push<dynamic>(
-    context,
-    MaterialPageRoute<dynamic>(
-      builder: (BuildContext context) => LoginScreen(reason: POST_ARTICLE_LOGIN),
-    ),
-  );
+  if (!globals.isLoggedIn) {
+    Navigator.push<dynamic>(
+      context,
+      MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) =>
+            LoginScreen(reason: POST_ARTICLE_LOGIN),
+      ),
+    );
+  } else {
+    Navigator.push<dynamic>(
+      context,
+      MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => PostArticleScreen(),
+      ),
+    );
+  }
 }

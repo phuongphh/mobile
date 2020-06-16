@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-import 'package:Adte/main.dart';
+import 'package:Adte/custom_drawer/drawer_user_controller.dart';
+import 'package:Adte/models/globals.dart' as globals;
 import 'package:Adte/models/app_const.dart';
 import 'package:Adte/models/app_theme.dart';
+import 'package:Adte/screens/post_article_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:Adte/widgets/login_input.dart';
 
@@ -10,10 +12,11 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 
 class LoginUi extends StatefulWidget {
-  const LoginUi({Key key, this.animationController, this.reason})
+  const LoginUi({Key key, this.animationController, this.reason, this.callback})
       : super(key: key);
   final AnimationController animationController;
   final String reason;
+  final VoidCallback callback;
 
   @override
   _LoginUiState createState() => _LoginUiState();
@@ -111,7 +114,7 @@ class _LoginUiState extends State<LoginUi> {
                         child: InkWell(
                             borderRadius: BorderRadius.circular(40),
                             onTap: () {
-                              signInSubmission(loginStep);
+                              submissionFunction(loginStep).call();
                             },
                             child: ImageIcon(
                               AssetImage("assets/images/ic_forward.png"),
@@ -158,7 +161,60 @@ class _LoginUiState extends State<LoginUi> {
           children: <Widget>[
             roundedRectButton("Let's get Started", signInGradients, false),
           ]));
+    } else if (loginStep == LoginSteps.ForgotPassword) {
+      listViews.add(Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            roundedRectButton("Let's get Started", signInGradients, false),
+          ]));
     }
+  }
+
+  Widget roundedRectButton(
+      String title, List<Color> gradient, bool isEndIconVisible) {
+    return Builder(builder: (BuildContext mContext) {
+      return Padding(
+          padding: EdgeInsets.only(bottom: 10),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(40),
+            onTap: () {
+              submissionFunction(loginStep);
+            },
+            child: Stack(
+              alignment: Alignment(1.0, 0.0),
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(mContext).size.width / 1.7,
+                  decoration: ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    gradient: LinearGradient(
+                        colors: gradient,
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight),
+                  ),
+                  child: Text(title,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500)),
+                  padding: EdgeInsets.only(top: 16, bottom: 16),
+                ),
+                Visibility(
+                  visible: isEndIconVisible,
+                  child: Padding(
+                      padding: EdgeInsets.only(right: 10),
+                      child: ImageIcon(
+                        AssetImage("assets/images/ic_forward.png"),
+                        size: 30,
+                        color: Colors.white,
+                      )),
+                ),
+              ],
+            ),
+          ));
+    });
   }
 
   @override
@@ -169,52 +225,11 @@ class _LoginUiState extends State<LoginUi> {
           padding:
               EdgeInsets.only(top: MediaQuery.of(context).size.height / 2.3),
         ),
-        Column (
+        Column(
           children: listViews,
         )
       ],
     );
-  }
-
-  void signInSubmission(LoginSteps loginStep) {
-    if (loginStep == LoginSteps.InputEmail) {
-      // email is valid
-      if (_validateEmail(textController.text)) {
-        setState(() {
-          print(loginStep);
-          currentEmail = textController.text;
-          title = 'Email | Password >>';
-          guidance = 'Enter your password ...';
-          textController.clear();
-          warning = false;
-          obscure = true;
-          loginStep = LoginSteps.InputPassword;
-          hint = 'your password';
-          addViews(loginStep);
-        });
-      } else {
-        setState(() {
-          warning = true;
-          warningMessage = "email invalid !";
-          addViews(loginStep);
-        });
-      }
-    } else if (loginStep == LoginSteps.InputPassword) {
-      print(loginStep);
-      currentPassword = textController.text;
-      _validatePassword(currentEmail, currentPassword).then((value) async {
-        if (value) {
-          await storage.write(key: "jwt", value: token);
-          await storage.write(key: "userId", value: userId);
-          _showDialog();
-        } else {
-          warning = true;
-          warningMessage = 'wrong password';
-          loginStep = LoginSteps.ForgotPassword;
-          addViews(loginStep);
-        }
-      });
-    }
   }
 
   void _showDialog() {
@@ -232,7 +247,8 @@ class _LoginUiState extends State<LoginUi> {
               child: new Text("Close"),
               onPressed: () {
                 Navigator.of(context).pop();
-                Navigator.pop(context);
+                Navigator.of(context).pop();
+                _openPostArticleScreen();
               },
             ),
           ],
@@ -259,52 +275,104 @@ class _LoginUiState extends State<LoginUi> {
         }));
     token = json.decode(response.body)["jwt"];
     userId = json.decode(response.body)["user"]["id"];
-    print(response.body);
-    print(userId);
     return (response.statusCode == 200);
   }
-}
 
-Widget roundedRectButton(
-    String title, List<Color> gradient, bool isEndIconVisible) {
-  return Builder(builder: (BuildContext mContext) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 10),
-      child: Stack(
-        alignment: Alignment(1.0, 0.0),
-        children: <Widget>[
-          Container(
-            alignment: Alignment.center,
-            width: MediaQuery.of(mContext).size.width / 1.7,
-            decoration: ShapeDecoration(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0)),
-              gradient: LinearGradient(
-                  colors: gradient,
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight),
-            ),
-            child: Text(title,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500)),
-            padding: EdgeInsets.only(top: 16, bottom: 16),
-          ),
-          Visibility(
-            visible: isEndIconVisible,
-            child: Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: ImageIcon(
-                  AssetImage("assets/images/ic_forward.png"),
-                  size: 30,
-                  color: Colors.white,
-                )),
-          ),
-        ],
+  void submitEmail() {
+    if (_validateEmail(textController.text)) {
+      setState(() {
+        currentEmail = textController.text;
+        title = 'Email | Password >>';
+        guidance = 'Enter your password ...';
+        textController.clear();
+        warning = false;
+        obscure = true;
+        loginStep = LoginSteps.InputPassword;
+        hint = 'your password';
+        addViews(loginStep);
+      });
+    } else {
+      setState(() {
+        warning = true;
+        warningMessage = "email invalid !";
+        addViews(loginStep);
+      });
+    }
+  }
+
+  void _openPostArticleScreen() {
+    Navigator.push<dynamic>(
+      context,
+      MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => PostArticleScreen(),
       ),
     );
-  });
+  }
+
+  void submitPassword() {
+    print(loginStep);
+    currentPassword = textController.text;
+    _validatePassword(currentEmail, currentPassword).then((value) async {
+      if (value) {
+        await globals.storage.write(key: "jwt", value: token);
+        await globals.storage.write(key: "userId", value: userId);
+        globals.isLoggedIn = true;
+        _showDialog();
+      } else {
+        warning = true;
+        warningMessage = 'wrong password';
+        loginStep = LoginSteps.ForgotPassword;
+        addViews(loginStep);
+      }
+    });
+  }
+
+  void submitCreateAccount() {
+    print(loginStep);
+    currentPassword = textController.text;
+    _validatePassword(currentEmail, currentPassword).then((value) async {
+      if (value) {
+        await globals.storage.write(key: "jwt", value: token);
+        await globals.storage.write(key: "userId", value: userId);
+        _showDialog();
+      } else {
+        warning = true;
+        warningMessage = 'wrong password';
+        loginStep = LoginSteps.ForgotPassword;
+        addViews(loginStep);
+      }
+    });
+  }
+
+  void submitForgotPassword() {
+    print(loginStep);
+    currentPassword = textController.text;
+    _validatePassword(currentEmail, currentPassword).then((value) async {
+      if (value) {
+        await globals.storage.write(key: "jwt", value: token);
+        await globals.storage.write(key: "userId", value: userId);
+        _showDialog();
+      } else {
+        warning = true;
+        warningMessage = 'wrong password';
+        loginStep = LoginSteps.ForgotPassword;
+        addViews(loginStep);
+      }
+    });
+  }
+
+  Function submissionFunction(LoginSteps loginStep) {
+    if (loginStep == LoginSteps.InputEmail) {
+      return submitEmail;
+    } else if (loginStep == LoginSteps.InputPassword) {
+      return submitPassword;
+    } else if (loginStep == LoginSteps.CreateAccount) {
+      return submitCreateAccount;
+    } else {
+      //ForgotPassword case
+      return submitForgotPassword;
+    }
+  }
 }
 
 const List<Color> signInGradients = [

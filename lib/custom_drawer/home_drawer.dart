@@ -1,10 +1,12 @@
-import 'dart:io';
 import 'dart:convert';
-import 'package:Adte/main.dart';
 import 'package:Adte/models/app_const.dart';
+import 'package:Adte/screens/login_screen.dart';
+import 'package:Adte/screens/post_article_screen.dart';
+import 'package:Adte/widgets/home_drawer_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:Adte/models/app_theme_bk.dart';
 import 'package:http/http.dart' as http;
+import 'package:Adte/models/globals.dart' as globals;
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(
@@ -26,15 +28,21 @@ class _HomeDrawerState extends State<HomeDrawer> {
   List<DrawerList> drawerList;
   String userId;
   String token;
-  String avatarUrl;
   Widget avatar;
-  String username;
+  String username = 'temp';
 
   @override
   void initState() {
-    print('initState');
+    print(globals.isLoggedIn);
+    _getUserAuthenInfo.call();
+    _getAvatar(globals.isLoggedIn).then((value) {
+      print(globals.isLoggedIn);
+      avatar = value;
+    });
+    _getUserName(globals.isLoggedIn).then((value) {
+      username = value;
+    });
     setdDrawerListArray();
-    username = 'Noname';
     super.initState();
   }
 
@@ -74,10 +82,29 @@ class _HomeDrawerState extends State<HomeDrawer> {
     ];
   }
 
-  Future<Widget> _getAvatar() async {
-    token = await storage.read(key: "jwt");
-    userId = await storage.read(key: "userId");
-    if (token == null) {
+  Widget _getDrawerBottom(bool isLoggedIn) {
+    if (isLoggedIn == false) {
+      return HomeDrawerBottom(
+          title: 'Sign In',
+          icon: Icon(
+            Icons.power_settings_new,
+            color: Colors.green,
+          ),
+          submitFunction: _attemptSignIn);
+    } else {
+      return HomeDrawerBottom(
+          title: 'Sign Out',
+          icon: Icon(
+            Icons.power_settings_new,
+            color: Colors.red,
+          ),
+          submitFunction: _attemptSignOut);
+    }
+  }
+
+  Future<Widget> _getAvatar(bool isLoggedIn) async {
+    print('getAvatar $isLoggedIn');
+    if (isLoggedIn == false) {
       return (ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(60.0)),
         child: Image.asset('assets/images/userImage.png'),
@@ -91,7 +118,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
           'Authorization': 'Bearer $token',
         },
       );
-      avatarUrl = json.decode(response.body)["avatar"]["url"];
+      String avatarUrl = json.decode(response.body)["avatar"]["url"];
       return Padding(
           padding: const EdgeInsets.all(8),
           child: Container(
@@ -114,10 +141,8 @@ class _HomeDrawerState extends State<HomeDrawer> {
     }
   }
 
-  Future<String> _getUserName() async {
-    token = await storage.read(key: "jwt");
-    userId = await storage.read(key: "userId");
-    if (token == null) {
+  Future<String> _getUserName(bool isLoggedIn) async {
+    if (isLoggedIn == false) {
       return 'Noname';
     } else {
       final response = await http.get(
@@ -134,10 +159,10 @@ class _HomeDrawerState extends State<HomeDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    _getAvatar().then((value) {
+    _getAvatar(globals.isLoggedIn).then((value) {
       avatar = value;
     });
-    _getUserName().then((value) {
+    _getUserName(globals.isLoggedIn).then((value) {
       username = value;
     });
     return Scaffold(
@@ -223,30 +248,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
             height: 1,
             color: AppTheme.grey.withOpacity(0.6),
           ),
-          Column(
-            children: <Widget>[
-              ListTile(
-                title: Text(
-                  'Sign Out',
-                  style: TextStyle(
-                    fontFamily: AppTheme.fontName,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                    color: AppTheme.darkText,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-                trailing: Icon(
-                  Icons.power_settings_new,
-                  color: Colors.red,
-                ),
-                onTap: () {},
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).padding.bottom,
-              )
-            ],
-          ),
+          _getDrawerBottom(globals.isLoggedIn),
         ],
       ),
     );
@@ -356,6 +358,41 @@ class _HomeDrawerState extends State<HomeDrawer> {
 
   Future<void> navigationtoScreen(DrawerIndex indexScreen) async {
     widget.callBackIndex(indexScreen);
+  }
+
+  void _attemptSignOut() {
+    setState(() {
+      globals.isLoggedIn = false;
+      globals.storage.deleteAll();
+      _getAvatar(globals.isLoggedIn).then((value) {
+        avatar = value;
+      });
+      _getUserName(globals.isLoggedIn).then((value) {
+        username = value;
+      });
+    });
+  }
+
+  void _attemptSignIn() {
+    setState(() {
+      Navigator.push<dynamic>(
+        context,
+        MaterialPageRoute<dynamic>(
+          builder: (BuildContext context) => LoginScreen(reason: 'Login your account'),
+        ),
+      );
+    });
+  }
+
+  void _getUserAuthenInfo() async {
+    token = await globals.storage.read(key: "jwt");
+    userId = await globals.storage.read(key: "userId");
+    if (userId == null)
+      globals.isLoggedIn = false;
+    else
+      globals.isLoggedIn = true;
+
+    print('home drawer: $userId $token ${globals.isLoggedIn}');
   }
 }
 

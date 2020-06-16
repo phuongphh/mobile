@@ -21,10 +21,6 @@ class _CategoryListViewState extends State<CategoryListView>
     'assets/fitness_app/area2.png',
     'assets/fitness_app/area3.png',
     'assets/fitness_app/area1.png',
-    'assets/fitness_app/area1.png',
-    'assets/fitness_app/area2.png',
-    'assets/fitness_app/area3.png',
-    'assets/fitness_app/area1.png',
   ];
 
   @override

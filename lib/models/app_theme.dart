@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'hex_color.dart';
-
 class AppTheme {
   AppTheme._();
   static const Color nearlyWhite = Color(0xFFFAFAFA);

@@ -217,5 +217,6 @@ class _DrawerUserControllerState extends State<DrawerUserController>
         curve: Curves.fastOutSlowIn,
       );
     }
+    setState(() {});
   }
 }
