@@ -23,6 +23,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # localization
+  flutter_localizations:
+    sdk: flutter
+
+  #bloc
+  flutter_bloc: ^4.0.0
+  meta: ^1.1.6
+  equatable: ^1.0.0
   
   # http package
   http: ^0.12.1
@@ -59,6 +67,8 @@ flutter:
     - assets/design_course/
     - assets/fitness_app/
     - assets/hotel/
+    - assets/locale/localization_en.json
+    - assets/locale/localization_vi.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

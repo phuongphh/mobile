@@ -165,7 +165,7 @@ class _LoginUiState extends State<LoginUi> {
       listViews.add(Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            roundedRectButton("Let's get Started", signInGradients, false),
+            roundedRectButton("Send to email", signInGradients, false),
           ]));
     }
   }
@@ -273,9 +273,13 @@ class _LoginUiState extends State<LoginUi> {
           'identifier': email,
           'password': password,
         }));
-    token = json.decode(response.body)["jwt"];
-    userId = json.decode(response.body)["user"]["id"];
-    return (response.statusCode == 200);
+
+    if (response.statusCode == 200) {
+      token = json.decode(response.body)["jwt"];
+      userId = json.decode(response.body)["user"]["id"];
+      return true;
+    } else
+      return false;
   }
 
   void submitEmail() {
@@ -310,10 +314,9 @@ class _LoginUiState extends State<LoginUi> {
   }
 
   void submitPassword() {
-    print(loginStep);
     currentPassword = textController.text;
     _validatePassword(currentEmail, currentPassword).then((value) async {
-      if (value) {
+      if (value == true) {
         await globals.storage.write(key: "jwt", value: token);
         await globals.storage.write(key: "userId", value: userId);
         globals.isLoggedIn = true;

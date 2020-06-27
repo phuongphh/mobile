@@ -11,11 +11,16 @@ import 'package:Adte/widgets/custom_app_bar.dart';
 import 'package:Adte/models/article.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
+import 'package:Adte/services/app_translations.dart';
+import 'package:Adte/services/application.dart';
 
 class AllPostScreen extends StatefulWidget {
   const AllPostScreen({Key key, this.animationController}) : super(key: key);
   final AnimationController animationController;
-  
+
+  static final List<String> languagesList = application.supportedLanguages;
+  static final List<String> languageCodesList = application.supportedLanguagesCodes;
+
   @override
   _AllPostScreenState createState() => _AllPostScreenState();
 }

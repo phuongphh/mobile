@@ -6,6 +6,7 @@ import 'package:Adte/screens/feedback_screen.dart';
 import 'package:Adte/screens/app_home_screen.dart';
 import 'package:Adte/screens/help_screen.dart';
 import 'package:Adte/screens/invite_friend_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class NavigationHomeScreen extends StatefulWidget {
   @override
