@@ -269,10 +269,10 @@ class Formats {
     });
 
     factory Formats.fromJson(Map<String, dynamic> json) => Formats(
-        thumbnail: Large.fromJson(json["thumbnail"]),
-        large: Large.fromJson(json["large"]),
-        medium: Large.fromJson(json["medium"]),
-        small: Large.fromJson(json["small"]),
+        thumbnail: (json["thumbnail"] != null) ? Large.fromJson(json["thumbnail"]) : null,
+        large: (json["large"] != null) ? Large.fromJson(json["large"]) : null,
+        medium: (json["medium"] != null) ? Large.fromJson(json["medium"]) : null,
+        small: (json["small"] != null) ? Large.fromJson(json["small"]) : null,
     );
 
     Map<String, dynamic> toJson() => {

@@ -78,13 +78,12 @@ class ArticleCard extends StatelessWidget {
                             child: Padding(
                                 padding: const EdgeInsets.all(12),
                                 child: Container(
-                                  child: Text( 
+                                  child: Text(
                                     article.content,
                                     style: ArticleCardTheme.contentTextStyle,
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 6,
                                   ),
-                                  
                                 ))),
                         _getPrimaryPhoto(article.photos)
                       ],
@@ -178,8 +177,11 @@ Widget _getPrimaryPhoto(List<Photo> photos) {
             ),
             child: CircleAvatar(
               radius: 60,
-              backgroundImage: NetworkImage(
-                  SERVER_URL + photos.elementAt(0).formats.small.url),
+              backgroundImage: (photos.elementAt(0).formats.small == null)
+                  ? NetworkImage(
+                      SERVER_URL + photos.elementAt(0).formats.thumbnail.url)
+                  : NetworkImage(
+                      SERVER_URL + photos.elementAt(0).formats.small.url),
               backgroundColor: Colors.transparent,
             )));
   } else {

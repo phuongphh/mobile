@@ -44,7 +44,7 @@ class _AllPostScreenState extends State<AllPostScreen>
   }
 
   Future<List<Article>> fetchArticles() async {
-    final response = await http.get("$SERVER_URL/articles");
+    final response = await http.get("$SERVER_URL/articles?_sort=updatedAt:desc");
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
