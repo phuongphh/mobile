@@ -1,6 +1,6 @@
-import 'package:Adte/models/app_theme.dart';
-import 'package:Adte/models/hex_color.dart';
-import 'package:Adte/themes/dashboard_theme.dart';
+import 'package:Toot/models/app_theme.dart';
+import 'package:Toot/models/hex_color.dart';
+import 'package:Toot/themes/dashboard_theme.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 

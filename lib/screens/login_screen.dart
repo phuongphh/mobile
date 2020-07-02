@@ -1,7 +1,7 @@
-import 'package:Adte/models/app_theme_bk.dart';
-import 'package:Adte/widgets/login_ui.dart';
+import 'package:Toot/models/app_theme_bk.dart';
+import 'package:Toot/widgets/login_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:Adte/widgets/login_background.dart';
+import 'package:Toot/widgets/login_background.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key key, this.reason, this.callback}) : super(key: key);

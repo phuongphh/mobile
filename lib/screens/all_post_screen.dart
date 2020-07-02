@@ -1,18 +1,18 @@
-import 'package:Adte/models/app_const.dart';
-import 'package:Adte/widgets/article_card.dart';
-import 'package:Adte/widgets/body_measurement.dart';
-import 'package:Adte/widgets/dashboard.dart';
-import 'package:Adte/widgets/scroll_down_card.dart';
-import 'package:Adte/widgets/component_title.dart';
-import 'package:Adte/models/app_theme.dart';
-import 'package:Adte/widgets/water_view.dart';
+import 'package:Toot/models/app_const.dart';
+import 'package:Toot/widgets/article_card.dart';
+import 'package:Toot/widgets/body_measurement.dart';
+import 'package:Toot/widgets/dashboard.dart';
+import 'package:Toot/widgets/scroll_down_card.dart';
+import 'package:Toot/widgets/component_title.dart';
+import 'package:Toot/models/app_theme.dart';
+import 'package:Toot/widgets/water_view.dart';
 import 'package:flutter/material.dart';
-import 'package:Adte/widgets/custom_app_bar.dart';
-import 'package:Adte/models/article.dart';
+import 'package:Toot/widgets/custom_app_bar.dart';
+import 'package:Toot/models/article.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'package:Adte/services/app_translations.dart';
-import 'package:Adte/services/application.dart';
+import 'package:Toot/services/app_translations.dart';
+import 'package:Toot/services/application.dart';
 
 class AllPostScreen extends StatefulWidget {
   const AllPostScreen({Key key, this.animationController}) : super(key: key);

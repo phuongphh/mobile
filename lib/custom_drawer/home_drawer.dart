@@ -1,12 +1,12 @@
 import 'dart:convert';
-import 'package:Adte/models/app_const.dart';
-import 'package:Adte/screens/login_screen.dart';
-import 'package:Adte/screens/post_article_screen.dart';
-import 'package:Adte/widgets/home_drawer_bottom.dart';
+import 'package:Toot/models/app_const.dart';
+import 'package:Toot/screens/login_screen.dart';
+import 'package:Toot/screens/post_article_screen.dart';
+import 'package:Toot/widgets/home_drawer_bottom.dart';
 import 'package:flutter/material.dart';
-import 'package:Adte/models/app_theme_bk.dart';
+import 'package:Toot/models/app_theme_bk.dart';
 import 'package:http/http.dart' as http;
-import 'package:Adte/models/globals.dart' as globals;
+import 'package:Toot/models/globals.dart' as globals;
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(

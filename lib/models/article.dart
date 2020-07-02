@@ -3,7 +3,7 @@
 //     final article = articleFromJson(jsonString);
 
 import 'dart:convert';
-import 'package:Adte/models/user.dart';
+import 'package:Toot/models/user.dart';
 
 List<Article> articleFromJson(String str) => List<Article>.from(json.decode(str).map((x) => Article.fromJson(x)));
 

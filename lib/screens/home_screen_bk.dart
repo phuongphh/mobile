@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Adte/models/app_theme.dart';
-import 'package:Adte/models/homelist.dart';
+import 'package:Toot/models/app_theme.dart';
+import 'package:Toot/models/homelist.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key key}) : super(key: key);

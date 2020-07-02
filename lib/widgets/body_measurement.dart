@@ -1,6 +1,6 @@
-import 'package:Adte/models/app_theme.dart';
+import 'package:Toot/models/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:Adte/models/article.dart';
+import 'package:Toot/models/article.dart';
 
 class BodyMeasurementView extends StatelessWidget {
   final AnimationController animationController;

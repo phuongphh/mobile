@@ -1,10 +1,10 @@
-import 'package:Adte/widgets/category_list_view.dart';
-import 'package:Adte/widgets/running_view.dart';
-import 'package:Adte/widgets/component_title.dart';
-import 'package:Adte/widgets/workout_view.dart';
+import 'package:Toot/widgets/category_list_view.dart';
+import 'package:Toot/widgets/running_view.dart';
+import 'package:Toot/widgets/component_title.dart';
+import 'package:Toot/widgets/workout_view.dart';
 import 'package:flutter/material.dart';
-import 'package:Adte/models/app_theme.dart';
-import 'package:Adte/widgets/custom_app_bar.dart';
+import 'package:Toot/models/app_theme.dart';
+import 'package:Toot/widgets/custom_app_bar.dart';
 
 class ServicesScreen extends StatefulWidget {
   const ServicesScreen({Key key, this.animationController}) : super(key: key);

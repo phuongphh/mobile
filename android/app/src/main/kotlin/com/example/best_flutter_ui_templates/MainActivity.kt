@@ -1,4 +1,4 @@
-package com.example.adte
+package com.example.toot
 
 import io.flutter.embedding.android.FlutterActivity
 

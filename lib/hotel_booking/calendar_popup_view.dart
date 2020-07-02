@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:Adte/hotel_booking/hotel_app_theme.dart';
+import 'package:Toot/hotel_booking/hotel_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

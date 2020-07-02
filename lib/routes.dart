@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:Adte/models/app_theme.dart';
-import 'package:Adte/custom_drawer/drawer_user_controller.dart';
-import 'package:Adte/custom_drawer/home_drawer.dart';
-import 'package:Adte/screens/feedback_screen.dart';
-import 'package:Adte/screens/app_home_screen.dart';
-import 'package:Adte/screens/help_screen.dart';
-import 'package:Adte/screens/invite_friend_screen.dart';
+import 'package:Toot/models/app_theme.dart';
+import 'package:Toot/custom_drawer/drawer_user_controller.dart';
+import 'package:Toot/custom_drawer/home_drawer.dart';
+import 'package:Toot/screens/feedback_screen.dart';
+import 'package:Toot/screens/app_home_screen.dart';
+import 'package:Toot/screens/help_screen.dart';
+import 'package:Toot/screens/invite_friend_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class NavigationHomeScreen extends StatefulWidget {

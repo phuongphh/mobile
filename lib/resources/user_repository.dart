@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:Adte/models/app_const.dart';
+import 'package:Toot/models/app_const.dart';
 import 'dart:convert';
-import 'package:Adte/models/globals.dart' as globals;
+import 'package:Toot/models/globals.dart' as globals;
 
 class UserRepository {
   Future<String> authenticate({

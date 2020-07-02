@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Adte/models/app_theme.dart';
+import 'package:Toot/models/app_theme.dart';
 
 class RunningView extends StatelessWidget {
   final AnimationController animationController;

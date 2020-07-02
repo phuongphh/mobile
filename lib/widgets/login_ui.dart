@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:Adte/custom_drawer/drawer_user_controller.dart';
-import 'package:Adte/models/globals.dart' as globals;
-import 'package:Adte/models/app_const.dart';
-import 'package:Adte/models/app_theme.dart';
-import 'package:Adte/screens/post_article_screen.dart';
+import 'package:Toot/custom_drawer/drawer_user_controller.dart';
+import 'package:Toot/models/globals.dart' as globals;
+import 'package:Toot/models/app_const.dart';
+import 'package:Toot/models/app_theme.dart';
+import 'package:Toot/screens/post_article_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:Adte/widgets/login_input.dart';
+import 'package:Toot/widgets/login_input.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:async';

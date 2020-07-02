@@ -1,7 +1,7 @@
 import 'dart:ui';
-import 'package:Adte/hotel_booking/calendar_popup_view.dart';
-import 'package:Adte/hotel_booking/hotel_list_view.dart';
-import 'package:Adte/hotel_booking/model/hotel_list_data.dart';
+import 'package:Toot/hotel_booking/calendar_popup_view.dart';
+import 'package:Toot/hotel_booking/hotel_list_view.dart';
+import 'package:Toot/hotel_booking/model/hotel_list_data.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Adte/design_course/design_course_app_theme.dart';
+import 'package:Toot/design_course/design_course_app_theme.dart';
 
 class PostArticleScreen extends StatefulWidget {
   @override

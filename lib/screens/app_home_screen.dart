@@ -1,18 +1,20 @@
-import 'package:Adte/hotel_booking/hotel_home_screen.dart';
-import 'package:Adte/models/app_const.dart';
-import 'package:Adte/screens/champion_screen.dart';
-import 'package:Adte/screens/login_screen.dart';
-import 'package:Adte/screens/post_article_screen.dart';
+import 'package:Toot/hotel_booking/hotel_home_screen.dart';
+import 'package:Toot/models/app_const.dart';
+import 'package:Toot/screens/champion_screen.dart';
+import 'package:Toot/screens/login_page.dart';
+import 'package:Toot/screens/login_screen.dart';
+import 'package:Toot/screens/post_article_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'package:Adte/models/tabIcon_data.dart';
-import 'package:Adte/screens/handmades_screen.dart';
-import 'package:Adte/screens/services_screen.dart';
-import 'package:Adte/widgets/bottom_bar_view.dart';
-import 'package:Adte/models/app_theme.dart';
-import 'package:Adte/screens/all_post_screen.dart';
-import 'package:Adte/design_course/home_design_course.dart';
-import 'package:Adte/models/globals.dart' as globals;
+import 'package:Toot/models/tabIcon_data.dart';
+import 'package:Toot/screens/handmades_screen.dart';
+import 'package:Toot/screens/services_screen.dart';
+import 'package:Toot/widgets/bottom_bar_view.dart';
+import 'package:Toot/models/app_theme.dart';
+import 'package:Toot/screens/all_post_screen.dart';
+import 'package:Toot/design_course/home_design_course.dart';
+import 'package:Toot/models/globals.dart' as globals;
+import 'package:Toot/resources/user_repository.dart';
 
 class AppHomeScreen extends StatefulWidget {
   const AppHomeScreen({Key key}) : super(key: key);
@@ -145,7 +147,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
                       return;
                     }
                     setState(() {
-                      tabBody = ChampionScreen();
+                      tabBody = LoginPage();
                     });
                   });
                 }
