@@ -11,7 +11,7 @@ import 'package:Toot/screens/handmades_screen.dart';
 import 'package:Toot/screens/services_screen.dart';
 import 'package:Toot/widgets/bottom_bar_view.dart';
 import 'package:Toot/models/app_theme.dart';
-import 'package:Toot/screens/all_post_screen.dart';
+import 'package:Toot/screens/all_post_screen_bk.dart';
 import 'package:Toot/design_course/home_design_course.dart';
 import 'package:Toot/models/globals.dart' as globals;
 import 'package:Toot/resources/user_repository.dart';

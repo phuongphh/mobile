@@ -28,9 +28,17 @@ dependencies:
     sdk: flutter
 
   #bloc
-  flutter_bloc: ^4.0.0
-  meta: ^1.1.6
+  bloc: ^6.0.0
+  flutter_bloc: ^6.0.0
   equatable: ^1.0.0
+  rxdart: ^0.18.0
+  authentication_repository: 
+    path: packages/authentication_repository
+  user_repository:
+    path: packages/user_repository
+  
+  #formz
+  formz: ^0.2.0
   
   # http package
   http: ^0.12.1

@@ -13,6 +13,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:Toot/services/app_translations.dart';
 import 'package:Toot/services/application.dart';
+import 'package:Toot/resources/article_api_provider.dart';
 
 class AllPostScreen extends StatefulWidget {
   const AllPostScreen({Key key, this.animationController}) : super(key: key);
@@ -37,25 +38,25 @@ class _AllPostScreenState extends State<AllPostScreen>
   @override
   void initState() {
     super.initState();
-    futureArticles = fetchArticles();
+    futureArticles = ArticleApiProvider().fetchArticles();
     futureArticles.then((value) {
       addAllListData(value);
     });
   }
 
-  Future<List<Article>> fetchArticles() async {
-    final response = await http.get("$SERVER_URL/articles?_sort=updatedAt:desc");
+  // Future<List<Article>> fetchArticles() async {
+  //   final response = await http.get("$SERVER_URL/articles?_sort=updatedAt:desc");
 
-    if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-      return articleFromJson(response.body);
-    } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to load articles');
-    }
-  }
+  //   if (response.statusCode == 200) {
+  //     // If the server did return a 200 OK response,
+  //     // then parse the JSON.
+  //     return articleFromJson(response.body);
+  //   } else {
+  //     // If the server did not return a 200 OK response,
+  //     // then throw an exception.
+  //     throw Exception('Failed to load articles');
+  //   }
+  // }
 
   void addAllListData(List<Article> listArticle) {
     int count = 9;

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Toot/resources/user_repository.dart';
 
-import 'package:Toot/blocs/login_bloc.dart';
-import 'package:Toot/blocs/authentication_bloc.dart';
+import 'package:Toot/login/bloc/login_bloc.dart';
+import 'package:Toot/authentication/bloc/authentication_bloc.dart';
 import 'package:Toot/screens/login_form.dart';
 
 class LoginPage extends StatelessWidget {
