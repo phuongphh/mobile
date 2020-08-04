@@ -10,6 +10,7 @@ import 'package:Toot/authentication/authentication.dart';
 import 'package:Toot/home/home.dart';
 import 'package:Toot/login/login.dart';
 import 'package:Toot/splash/splash.dart';
+import 'package:Toot/home/home.dart';
 
 class App extends StatelessWidget {
   const App({
