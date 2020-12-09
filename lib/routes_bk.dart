@@ -1,4 +1,3 @@
-import 'package:Toot/resources/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:Toot/models/app_theme.dart';
 import 'package:Toot/custom_drawer/drawer_user_controller.dart';
@@ -9,31 +8,21 @@ import 'package:Toot/screens/help_screen.dart';
 import 'package:Toot/screens/invite_friend_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-class NavigationHomeScreen extends StatelessWidget {
-  final UserRepository userRepository;
-  NavigationHomeScreen({Key key, @required this.userRepository})
-      : assert(userRepository != null),
-        super(key: key);
+class NavigationHomeScreen extends StatefulWidget {
+  @override
+  _NavigationHomeScreenState createState() => _NavigationHomeScreenState();
+}
 
+class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   // Text screenTitle;
   Widget screenView;
   DrawerIndex drawerIndex;
 
-  void changeIndex(DrawerIndex drawerIndexdata) {
-    if (drawerIndex != drawerIndexdata) {
-      drawerIndex = drawerIndexdata;
-      if (drawerIndex == DrawerIndex.HOME) {
-        screenView = AppHomeScreen();
-      }
-    } else if (drawerIndex == DrawerIndex.Help) {
-      screenView = HelpScreen();
-    } else if (drawerIndex == DrawerIndex.FeedBack) {
-      screenView = FeedbackScreen();
-    } else if (drawerIndex == DrawerIndex.Invite) {
-      screenView = InviteFriend();
-    } else {
-      //do in your way......
-    }
+  @override
+  void initState() {
+    drawerIndex = DrawerIndex.HOME;
+    screenView = const AppHomeScreen();
+    super.initState();
   }
 
   @override
@@ -58,5 +47,30 @@ class NavigationHomeScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void changeIndex(DrawerIndex drawerIndexdata) {
+    if (drawerIndex != drawerIndexdata) {
+      drawerIndex = drawerIndexdata;
+      if (drawerIndex == DrawerIndex.HOME) {
+        setState(() {
+          screenView = AppHomeScreen();
+        });
+      } else if (drawerIndex == DrawerIndex.Help) {
+        setState(() {
+          screenView = HelpScreen();
+        });
+      } else if (drawerIndex == DrawerIndex.FeedBack) {
+        setState(() {
+          screenView = FeedbackScreen();
+        });
+      } else if (drawerIndex == DrawerIndex.Invite) {
+        setState(() {
+          screenView = InviteFriend();
+        });
+      } else {
+        //do in your way......
+      }
+    }
   }
 }

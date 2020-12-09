@@ -1,7 +1,7 @@
 import 'package:Toot/hotel_booking/hotel_home_screen.dart';
 import 'package:Toot/models/app_const.dart';
 import 'package:Toot/screens/champion_screen.dart';
-import 'package:Toot/screens/login_page.dart';
+import 'package:Toot/login/view/view.dart';
 import 'package:Toot/screens/login_screen.dart';
 import 'package:Toot/screens/post_article_screen.dart';
 import 'package:flutter/material.dart';
